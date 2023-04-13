@@ -1,6 +1,6 @@
 #!/bin/bash
 
-checkVersion() {
+check-version() {
     PKG=${1}
 
     remoteVersion=$(git ls-remote -q https://aur.archlinux.org/${PKG}.git heads/master | cut -f1)
