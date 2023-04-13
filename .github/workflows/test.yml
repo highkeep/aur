@@ -18,72 +18,72 @@ jobs:
   package: 
     needs: check
     if: ${{ needs.check.outputs.status }}
-      steps:
-        - name: Clone Package
-          run: |
-            git clone https://aur.archlinux.org/${{ github.workflow }}.git
-        - name: Swap in alderlake
-          run: |
-            sed -i 's/=nocona/=alderlake/g;s/=core-avx2/=alderlake/g' ${{ github.workflow }}/PKGBUILD
-        - name: Makepkg Build and Check
-          id: makepkg
-          uses: highkeep/pkgbuild-action@nvidia
-          with:
-            pkgdir: ${{ github.workflow }}
-            pacmanConf: "configs/alderlake_pacman.conf"
-            makepkgConf: "configs/alderlake_makepkg.conf"
-            repoReleaseTag: "alderlake"
-        - name: Print Package Files
-          run: |
-            echo "Successfully created the following package archive"
-            echo "Package: ${{ steps.makepkg.outputs.pkgfile0 }}"
-            echo "Package: ${{ steps.makepkg.outputs.repofile0 }}"
-            echo "Package: ${{ steps.makepkg.outputs.repofile1 }}"
-            echo "Package: ${{ steps.makepkg.outputs.repofile2 }}"
-            echo "Package: ${{ steps.makepkg.outputs.repofile3 }}"
-        - uses: svenstaro/upload-release-action@v2
-          with:
-            repo_token: ${{secrets.GITHUB_TOKEN}}
-            tag: alderlake
-            file: ${{ steps.makepkg.outputs.pkgfile0 }}
-            overwrite: true
-        - uses: svenstaro/upload-release-action@v2
-          with:
-            repo_token: ${{secrets.GITHUB_TOKEN}}
-            tag: alderlake
-            file: ${{ steps.makepkg.outputs.repofile0 }}
-            overwrite: true
-        - uses: svenstaro/upload-release-action@v2
-          with:
-            repo_token: ${{secrets.GITHUB_TOKEN}}
-            tag: alderlake
-            file: ${{ steps.makepkg.outputs.repofile1 }}
-            overwrite: true
-        - uses: svenstaro/upload-release-action@v2
-          with:
-            repo_token: ${{secrets.GITHUB_TOKEN}}
-            tag: alderlake
-            file: ${{ steps.makepkg.outputs.repofile2 }}
-            overwrite: true
-        - uses: svenstaro/upload-release-action@v2
-          with:
-            repo_token: ${{secrets.GITHUB_TOKEN}}
-            tag: alderlake
-            file: ${{ steps.makepkg.outputs.repofile3 }}
-            overwrite: true
-        - name: Update Version
-          run: |
-            echo $(git ls-remote ${{ github.workflow }} heads/master) > versions/${{ github.workflow }}  
-        - name: Update version
-          run: |
-            echo `git -C ${{ github.workflow }} rev-parse HEAD` > versions/${{ github.workflow }}
-        - name: Remove Package
-          run: |
-            rm -rf ${{ github.workflow }}
-        - name: Commit version
-          run: |
-            git add versions/${{ github.workflow }}
-            git config --global user.name 'Nick Marshall'
-            git config --global user.email 'highkeep@users.noreply.github.com'
-            git commit -am "Version control"
-            git push
+    steps:
+    - name: Clone Package
+      run: |
+        git clone https://aur.archlinux.org/${{ github.workflow }}.git
+    - name: Swap in alderlake
+      run: |
+        sed -i 's/=nocona/=alderlake/g;s/=core-avx2/=alderlake/g' ${{ github.workflow }}/PKGBUILD
+    - name: Makepkg Build and Check
+      id: makepkg
+      uses: highkeep/pkgbuild-action@nvidia
+      with:
+        pkgdir: ${{ github.workflow }}
+        pacmanConf: "configs/alderlake_pacman.conf"
+        makepkgConf: "configs/alderlake_makepkg.conf"
+        repoReleaseTag: "alderlake"
+    - name: Print Package Files
+      run: |
+        echo "Successfully created the following package archive"
+        echo "Package: ${{ steps.makepkg.outputs.pkgfile0 }}"
+        echo "Package: ${{ steps.makepkg.outputs.repofile0 }}"
+        echo "Package: ${{ steps.makepkg.outputs.repofile1 }}"
+        echo "Package: ${{ steps.makepkg.outputs.repofile2 }}"
+        echo "Package: ${{ steps.makepkg.outputs.repofile3 }}"
+    - uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{secrets.GITHUB_TOKEN}}
+        tag: alderlake
+        file: ${{ steps.makepkg.outputs.pkgfile0 }}
+        overwrite: true
+    - uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{secrets.GITHUB_TOKEN}}
+        tag: alderlake
+        file: ${{ steps.makepkg.outputs.repofile0 }}
+        overwrite: true
+    - uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{secrets.GITHUB_TOKEN}}
+        tag: alderlake
+        file: ${{ steps.makepkg.outputs.repofile1 }}
+        overwrite: true
+    - uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{secrets.GITHUB_TOKEN}}
+        tag: alderlake
+        file: ${{ steps.makepkg.outputs.repofile2 }}
+        overwrite: true
+    - uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{secrets.GITHUB_TOKEN}}
+        tag: alderlake
+        file: ${{ steps.makepkg.outputs.repofile3 }}
+        overwrite: true
+    - name: Update Version
+      run: |
+        echo $(git ls-remote ${{ github.workflow }} heads/master) > versions/${{ github.workflow }}  
+    - name: Update version
+      run: |
+        echo `git -C ${{ github.workflow }} rev-parse HEAD` > versions/${{ github.workflow }}
+    - name: Remove Package
+      run: |
+        rm -rf ${{ github.workflow }}
+    - name: Commit version
+      run: |
+        git add versions/${{ github.workflow }}
+        git config --global user.name 'Nick Marshall'
+        git config --global user.email 'highkeep@users.noreply.github.com'
+        git commit -am "Version control"
+        git push
