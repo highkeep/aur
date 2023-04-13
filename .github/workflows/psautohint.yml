@@ -13,7 +13,8 @@ jobs:
       run: |
         git clone https://aur.archlinux.org/${{ github.workflow }}.git
         cd ${{ github.workflow }}
-        git grep -l '=nocona' | xargs sed -i 's/=nocona/=alderlake/g;s/=core-avx2/=alderlake/g'
+        git grep -l '=nocona' | \
+          xargs sed -i 's/=nocona/=alderlake/g;s/=core-avx2/=alderlake/g' 2>/dev/null
         cd ../
     - name: Makepkg Build and Check
       id: makepkg
