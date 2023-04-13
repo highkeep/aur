@@ -13,6 +13,7 @@ jobs:
       run: |
         echo `git ls-remote -q https://aur.archlinux.org/${{ github.workflow }}.git heads/master | cut -f1`
         echo `cat versions/${{ github.workflow }} 2>/dev/null`
+        ls -l
     - name: Update Version
       run: |
         echo $(git ls-remote ${{ github.workflow }} heads/master) > versions/${{ github.workflow }}
