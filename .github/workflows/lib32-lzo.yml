@@ -24,7 +24,7 @@ jobs:
       uses: actions/checkout@v3
     - name: Clone Package
       run: |
-        sh git-svn.sh https://github.com/loathingKernel/PKGBUILDs.git aur/${{ github.workflow }}
+        source git-svn.sh && git-svn https://github.com/loathingKernel/PKGBUILDs.git aur/${{ github.workflow }}
     - name: Swap in alderlake
       run: |
         sed -i 's/=nocona/=alderlake/g;s/=core-avx2/=alderlake/g' ${{ github.workflow }}/PKGBUILD

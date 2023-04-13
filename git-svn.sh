@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function git-svn() {
+git-svn() {
     if [[ ! -z "$1" && ! -z "$2" ]]; then
         echo "Starting clone/copy ..."
         repo=$(echo $1 | sed 's/\/$\|.git$//')
@@ -9,5 +9,3 @@ function git-svn() {
         echo "Use: git-svn <repository> <subdirectory>"
     fi
 }
-
-git-svn $@
