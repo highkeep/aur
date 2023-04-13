@@ -8,11 +8,11 @@ check-version() {
     currentVersion=$(cat versions/${REPO_PKG} 2>/dev/null)
 
     echo ${remoteVersion} ${currentVersion}
-    if [[ "${remoteVersion}" != "${currentVersion}" ]]; then
-        echo "update=true"
-    else
-        echo "update=false"
-    fi
+    # if [[ "${remoteVersion}" != "${currentVersion}" ]]; then
+    #     echo "update=true"
+    # else
+    #     echo "update=false"
+    # fi
 }
 
 git-svn() {
