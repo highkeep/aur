@@ -10,8 +10,12 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
     - name: Compare Package
+      id: update
       run: |
         sh versions.sh
+    - name: Check Result
+      run: |
+        echo ${{ steps.update }}
 #        echo `git ls-remote -q https://aur.archlinux.org/${{ github.workflow }}.git heads/master | cut -f1`
 #        echo `cat versions/${{ github.workflow }} 2>/dev/null`
 #        git clone https://aur.archlinux.org/${{ github.workflow }}.git
