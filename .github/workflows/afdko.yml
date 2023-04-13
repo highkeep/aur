@@ -17,7 +17,7 @@ jobs:
       run: |
         ls -l
         source functions.sh
-        env
+        typeset
         
   # && check-version https://aur.archlinux.org ${{ github.workflow }} >> $GITHUB_OUTPUT
   # package: 
