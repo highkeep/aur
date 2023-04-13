@@ -12,10 +12,10 @@ jobs:
     - name: Compare Package
       id: update
       run: |
-        sh versions.sh ${{ github.workflow }}
+        sh versions.sh ${{ github.workflow }} >> $GITHUB_OUTPUT
     - name: Check Result
       run: |
-        echo ${{ steps.update.outputs.conclusion }}
+        echo ${{ steps.update.outputs.update }}
 #        echo `git ls-remote -q https://aur.archlinux.org/${{ github.workflow }}.git heads/master | cut -f1`
 #        echo `cat versions/${{ github.workflow }} 2>/dev/null`
 #        git clone https://aur.archlinux.org/${{ github.workflow }}.git
