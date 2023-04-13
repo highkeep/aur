@@ -18,7 +18,8 @@ jobs:
     - name: Compare Package
       id: update
       run: |
-        source functions.sh 
+        source functions.sh
+        which check-version
         check-version ${{ env.REPO_URL }} ${{ env.REPO_PKG }}
         check-version ${{ env.REPO_URL }} ${{ env.REPO_PKG }} >> $GITHUB_OUTPUT
   package: 
