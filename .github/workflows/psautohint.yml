@@ -15,7 +15,6 @@ jobs:
       id: update
       run: |
         sh versions.sh ${{ github.workflow }} >> $GITHUB_OUTPUT
-        echo $GITHUB_OUTPUT
   package: 
     runs-on: ubuntu-latest
     needs: check
@@ -26,6 +25,19 @@ jobs:
     - name: Clone Package
       run: |
         git clone https://aur.archlinux.org/${{ github.workflow }}.git
+    # - name: Update Version
+    #   run: |
+    #     echo $(git ls-remote ${{ github.workflow }} heads/master) > versions/${{ github.workflow }}  
+    - name: Update version
+      run: |
+        echo `git -C ${{ github.workflow }} rev-parse HEAD` > versions/${{ github.workflow }}
+    - name: Commit version
+      run: |
+        git add versions/${{ github.workflow }}
+        git config --global user.name 'Nick Marshall'
+        git config --global user.email 'highkeep@users.noreply.github.com'
+        git commit -am "Version control"
+        git push
     - name: Swap in alderlake
       run: |
         sed -i 's/=nocona/=alderlake/g;s/=core-avx2/=alderlake/g' ${{ github.workflow }}/PKGBUILD
@@ -75,19 +87,3 @@ jobs:
         tag: alderlake
         file: ${{ steps.makepkg.outputs.repofile3 }}
         overwrite: true
-    - name: Update Version
-      run: |
-        echo $(git ls-remote ${{ github.workflow }} heads/master) > versions/${{ github.workflow }}  
-    - name: Update version
-      run: |
-        echo `git -C ${{ github.workflow }} rev-parse HEAD` > versions/${{ github.workflow }}
-    - name: Remove Package
-      run: |
-        rm -rf ${{ github.workflow }}
-    - name: Commit version
-      run: |
-        git add versions/${{ github.workflow }}
-        git config --global user.name 'Nick Marshall'
-        git config --global user.email 'highkeep@users.noreply.github.com'
-        git commit -am "Version control"
-        git push
