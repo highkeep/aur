@@ -15,7 +15,7 @@ jobs:
         ls -l
     - name: Makepkg Build and Check
       id: makepkg
-      uses: highkeep/pkgbuild-action@master
+      uses: highkeep/pkgbuild-action@nvidia
       with:
         pkgdir: "psautohint"
         pacmanConf: "configs/alderlake_pacman.conf"
