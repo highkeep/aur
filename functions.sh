@@ -8,9 +8,9 @@ function check-version() {
     currentVersion=$(cat versions/${REPO_PKG} 2>/dev/null)
 
     if [[ "${remoteVersion}" != "${currentVersion}" ]]; then
-        echo update=true
+        echo "update=true"
     else
-        echo update=false
+        echo "update=false"
     fi
 }
 
