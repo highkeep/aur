@@ -9,4 +9,4 @@ jobs:
     steps:
     - name: echo flow
       run: |
-        echo "${{GITHUB_WORKFLOW}}.tar.gz"
+        echo "${{vars.GITHUB_WORKFLOW}}.tar.gz"
