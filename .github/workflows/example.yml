@@ -7,6 +7,6 @@ jobs:
   package:
     runs-on: ubuntu-latest
     steps:
-    - name: echo flow
+    - name: echo envs
       run: |
-        echo "${{vars.GITHUB_WORKFLOW}}.tar.gz"
+        echo "${{ env.GITHUB_WORKFLOW }}.tar.gz"
