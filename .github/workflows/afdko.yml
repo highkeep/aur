@@ -80,7 +80,7 @@ jobs:
         overwrite: true
     - name: Ignore package folder
       run: | 
-        echo ${{ env.REPO_PKG }} >> .gitignore
+        echo /${{ env.REPO_PKG }} >> .gitignore
     - name: Update version
       run: |
         [ -f versions/${{ env.REPO_PKG }} ] || touch versions/${{ env.REPO_PKG }} && git add versions/${{ env.REPO_PKG }}
