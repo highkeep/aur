@@ -18,6 +18,9 @@ jobs:
     - name: Update version
       run: |
         echo `git -C ${{ github.workflow }} rev-parse HEAD` > versions/${{ github.workflow }}
+    - name: Remove Package
+      run: |
+        rm -rf ${{ github.workdir }}
     - name: Commit version
       run: |
         git add versions/${{ github.workflow }}
