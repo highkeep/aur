@@ -7,6 +7,7 @@ function check-version() {
     remoteVersion=$(git ls-remote -q ${REPO_URL}/${REPO_PKG}.git heads/master | cut -f1)
     currentVersion=$(cat versions/${REPO_PKG} 2>/dev/null)
 
+    echo ${remoteVersion} ${currentVersion}
     if [[ "${remoteVersion}" != "${currentVersion}" ]]; then
         echo "update=true"
     else
