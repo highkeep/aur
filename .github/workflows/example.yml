@@ -9,4 +9,4 @@ jobs:
     steps:
     - name: echo flow
       run: |
-        echo "${{NAME}}.tar.gz"
+        echo "$NAME.tar.gz"
