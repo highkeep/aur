@@ -25,6 +25,9 @@ jobs:
     - name: Clone Package
       run: |
         git clone https://aur.archlinux.org/${{ github.workflow }}.git
+    - name: Update SRCINFO
+      run: |
+        (cd ${{ github.workflow }} && makepkg --printsrcinfo > .SRCINFO)
     - name: Update version
       run: |
         echo `git -C ${{ github.workflow }} rev-parse HEAD` > versions/${{ github.workflow }}
@@ -34,6 +37,7 @@ jobs:
         git config --global user.name 'Nick Marshall'
         git config --global user.email 'highkeep@users.noreply.github.com'
         git commit -am "Version control"
+        git push
         git push
     - name: Swap in alderlake
       run: |
