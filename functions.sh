@@ -1,10 +1,11 @@
 #!/bin/bash
 
 check-version() {
-    PKG=${1}
+    REPO_URL=${1}
+    REPO_PKG=${2}
 
-    remoteVersion=$(git ls-remote -q https://aur.archlinux.org/${PKG}.git heads/master | cut -f1)
-    currentVersion=$(cat versions/${PKG} 2>/dev/null)
+    remoteVersion=$(git ls-remote -q ${REPO_URL}/${REPO_PKG}.git heads/master | cut -f1)
+    currentVersion=$(cat versions/${REPO_PKG} 2>/dev/null)
 
     if [[ "${remoteVersion}" != "${currentVersion}" ]]; then
         echo update=true
