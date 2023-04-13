@@ -16,7 +16,7 @@ jobs:
       id: makepkg
       uses: highkeep/pkgbuild-action@nvidia
       with:
-        pkgdir: ${{ github.workflow }}
+        pkgdir: "${{ github.workflow }}"
         pacmanConf: "configs/alderlake_pacman.conf"
         makepkgConf: "configs/alderlake_makepkg.conf"
         repoReleaseTag: "alderlake"
