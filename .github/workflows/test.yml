@@ -15,10 +15,11 @@ jobs:
         echo `cat versions/${{ github.workflow }} 2>/dev/null`
         git clone https://aur.archlinux.org/${{ github.workflow }}.git
         ls -l
-    - name: Update Version
+    - name: Update version
       run: |
-        ls -l
         echo `git -C ${{ github.workflow }} rev-parse HEAD` > versions/${{ github.workflow }}
+    - name: Commit version
+      run: |
         git add versions/${{ github.workflow }}
         git config --global user.name 'Nick Marshall'
         git config --global user.email 'highkeep@users.noreply.github.com'
