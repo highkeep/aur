@@ -7,6 +7,6 @@ jobs:
   package:
     runs-on: ubuntu-latest
     steps:
-      - name: "echo flow"
-        run: |
-        echo $NAME
+    - name: "echo flow"
+      run: |
+      echo $NAME
