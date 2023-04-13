@@ -18,7 +18,8 @@ jobs:
     - name: Compare Package
       id: update
       run: |
-        source functions.sh && check-version https://aur.archlinux.org ${{ github.workflow }}
+        source functions.sh
+        echo $(check-version https://aur.archlinux.org ${{ github.workflow }})
   package: 
     runs-on: ubuntu-latest
     needs: check
