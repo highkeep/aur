@@ -1,1 +1,1 @@
-# aur-builder
+# Personal builder for AUR packages
