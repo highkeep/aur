@@ -25,16 +25,6 @@ jobs:
     - name: Clone Package
       run: |
         git clone https://aur.archlinux.org/${{ github.workflow }}.git
-    - name: Update version
-      run: |
-        echo `git -C ${{ github.workflow }} rev-parse HEAD` > versions/${{ github.workflow }}
-    - name: Commit version
-      run: |
-        git add versions/${{ github.workflow }}
-        git config --global user.name 'Nick Marshall'
-        git config --global user.email 'highkeep@users.noreply.github.com'
-        git commit -am "Version control"
-        git push
     - name: Swap in alderlake
       run: |
         sed -i 's/=nocona/=alderlake/g;s/=core-avx2/=alderlake/g' ${{ github.workflow }}/PKGBUILD
@@ -84,3 +74,16 @@ jobs:
         tag: alderlake
         file: ${{ steps.makepkg.outputs.repofile3 }}
         overwrite: true
+    - name: Ignore package folder
+      run: | 
+        echo ${{ github.workflow }} >> .gitignore
+    - name: Update version
+      run: |
+        [ -f versions/${{ github.workflow }} ] || touch versions/${{ github.workflow }} && git add versions/${{ github.workflow }}
+        echo `git -C ${{ github.workflow }} rev-parse HEAD` > versions/${{ github.workflow }}
+    - name: Commit changes
+      run: |
+        git config --global user.name 'Nick Marshall'
+        git config --global user.email 'highkeep@users.noreply.github.com'
+        git commit -am "Version control"
+        git push
