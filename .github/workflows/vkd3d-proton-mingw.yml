@@ -1,4 +1,4 @@
-name: psautohint
+name: vkd3d-proton-mingw
 
 env:
   REPO_URL: "https://aur.archlinux.org"

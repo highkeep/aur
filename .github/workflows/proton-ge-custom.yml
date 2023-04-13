@@ -6,6 +6,8 @@ env:
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '0 */6 * * *'
 
 jobs:
   check:
@@ -29,8 +31,8 @@ jobs:
     - name: Clone Package
       run: |
         git clone ${{ env.REPO_URL }}/${{ env.REPO_PKG }}.git
-    - name: Swap in alderlake
-      run: |
+    - name: 
+       un: |
         sed -i 's/=nocona/=alderlake/g;s/=core-avx2/=alderlake/g' ${{ env.REPO_PKG }}/PKGBUILD
     - name: Makepkg Build and Check
       id: makepkg
