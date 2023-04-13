@@ -12,7 +12,6 @@ jobs:
     - name: Clone Package
       run: |
         git clone https://aur.archlinux.org/${{ vars.JOB_NAME }}.git
-        ls -l
     - name: Makepkg Build and Check
       id: makepkg
       uses: highkeep/pkgbuild-action@nvidia
