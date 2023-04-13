@@ -17,8 +17,8 @@ jobs:
       run: |
         ls -l
         source functions.sh
-        typeset
-        
+        git-svn
+
   # && check-version https://aur.archlinux.org ${{ github.workflow }} >> $GITHUB_OUTPUT
   # package: 
   #   runs-on: ubuntu-latest
