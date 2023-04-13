@@ -9,27 +9,79 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3
-    - name: Compare Package
+    - name: Check Version
       id: update
       run: |
         sh versions.sh ${{ github.workflow }} >> $GITHUB_OUTPUT
-    - name: Check Result
-      run: |
-        echo ${{ steps.update.outputs.update }}
-#        echo `git ls-remote -q https://aur.archlinux.org/${{ github.workflow }}.git heads/master | cut -f1`
-#        echo `cat versions/${{ github.workflow }} 2>/dev/null`
-#        git clone https://aur.archlinux.org/${{ github.workflow }}.git
-#        ls -l
-#    - name: Update version
-#      run: |
-#        echo `git -C ${{ github.workflow }} rev-parse HEAD` > versions/${{ github.workflow }}
-#    - name: Remove Package
-#      run: |
-#        rm -rf ${{ github.workflow }}
-#    - name: Commit version
-#      run: |
-#        git add versions/${{ github.workflow }}
-#        git config --global user.name 'Nick Marshall'
-#        git config --global user.email 'highkeep@users.noreply.github.com'
-#        git commit -am "Version control"
-#        git push
+  package: 
+    needs: check
+    if: ${{ steps.update.outputs.update }}
+      steps:
+      - name: Clone Package
+        run: |
+          git clone https://aur.archlinux.org/${{ github.workflow }}.git
+      - name: Swap in alderlake
+        run: |
+          sed -i 's/=nocona/=alderlake/g;s/=core-avx2/=alderlake/g' ${{ github.workflow }}/PKGBUILD
+      - name: Makepkg Build and Check
+        id: makepkg
+        uses: highkeep/pkgbuild-action@nvidia
+        with:
+          pkgdir: ${{ github.workflow }}
+          pacmanConf: "configs/alderlake_pacman.conf"
+          makepkgConf: "configs/alderlake_makepkg.conf"
+          repoReleaseTag: "alderlake"
+      - name: Print Package Files
+        run: |
+          echo "Successfully created the following package archive"
+          echo "Package: ${{ steps.makepkg.outputs.pkgfile0 }}"
+          echo "Package: ${{ steps.makepkg.outputs.repofile0 }}"
+          echo "Package: ${{ steps.makepkg.outputs.repofile1 }}"
+          echo "Package: ${{ steps.makepkg.outputs.repofile2 }}"
+          echo "Package: ${{ steps.makepkg.outputs.repofile3 }}"
+      - uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{secrets.GITHUB_TOKEN}}
+          tag: alderlake
+          file: ${{ steps.makepkg.outputs.pkgfile0 }}
+          overwrite: true
+      - uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{secrets.GITHUB_TOKEN}}
+          tag: alderlake
+          file: ${{ steps.makepkg.outputs.repofile0 }}
+          overwrite: true
+      - uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{secrets.GITHUB_TOKEN}}
+          tag: alderlake
+          file: ${{ steps.makepkg.outputs.repofile1 }}
+          overwrite: true
+      - uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{secrets.GITHUB_TOKEN}}
+          tag: alderlake
+          file: ${{ steps.makepkg.outputs.repofile2 }}
+          overwrite: true
+      - uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{secrets.GITHUB_TOKEN}}
+          tag: alderlake
+          file: ${{ steps.makepkg.outputs.repofile3 }}
+          overwrite: true
+      - name: Update Version
+        run: |
+          echo $(git ls-remote ${{ github.workflow }} heads/master) > versions/${{ github.workflow }}  
+      - name: Update version
+        run: |
+          echo `git -C ${{ github.workflow }} rev-parse HEAD` > versions/${{ github.workflow }}
+      - name: Remove Package
+        run: |
+          rm -rf ${{ github.workflow }}
+      - name: Commit version
+        run: |
+          git add versions/${{ github.workflow }}
+          git config --global user.name 'Nick Marshall'
+          git config --global user.email 'highkeep@users.noreply.github.com'
+          git commit -am "Version control"
+          git push
