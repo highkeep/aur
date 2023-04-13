@@ -1,4 +1,4 @@
-name: "lib32-lzo"
+name: lib32-lzo
 
 on:
   workflow_dispatch:
@@ -16,7 +16,7 @@ jobs:
       id: makepkg
       uses: highkeep/pkgbuild-action@nvidia
       with:
-        pkgdir: "$GITHUB_WORKFLOW"
+        pkgdir: $GITHUB_WORKFLOW
         pacmanConf: "configs/alderlake_pacman.conf"
         makepkgConf: "configs/alderlake_makepkg.conf"
         repoReleaseTag: "alderlake"
