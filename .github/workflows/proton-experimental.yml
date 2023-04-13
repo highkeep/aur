@@ -1,0 +1,60 @@
+name: proton-experimental
+
+on:
+  workflow_dispatch:
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Clone Package
+      run: |
+        git clone https://aur.archlinux.org/$GITHUB_WORKFLOW.git
+    - name: Makepkg Build and Check
+      id: makepkg
+      uses: highkeep/pkgbuild-action@nvidia
+      with:
+        pkgdir: "$GITHUB_WORKFLOW"
+        pacmanConf: "configs/alderlake_pacman.conf"
+        makepkgConf: "configs/alderlake_makepkg.conf"
+        repoReleaseTag: "alderlake"
+    - name: Print Package Files
+      run: |
+        echo "Successfully created the following package archive"
+        echo "Package: ${{ steps.makepkg.outputs.pkgfile0 }}"
+        echo "Package: ${{ steps.makepkg.outputs.repofile0 }}"
+        echo "Package: ${{ steps.makepkg.outputs.repofile1 }}"
+        echo "Package: ${{ steps.makepkg.outputs.repofile2 }}"
+        echo "Package: ${{ steps.makepkg.outputs.repofile3 }}"
+    - uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{secrets.GITHUB_TOKEN}}
+        tag: alderlake
+        file: ${{ steps.makepkg.outputs.pkgfile0 }}
+        overwrite: true
+    - uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{secrets.GITHUB_TOKEN}}
+        tag: alderlake
+        file: ${{ steps.makepkg.outputs.repofile0 }}
+        overwrite: true
+    - uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{secrets.GITHUB_TOKEN}}
+        tag: alderlake
+        file: ${{ steps.makepkg.outputs.repofile1 }}
+        overwrite: true
+    - uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{secrets.GITHUB_TOKEN}}
+        tag: alderlake
+        file: ${{ steps.makepkg.outputs.repofile2 }}
+        overwrite: true
+    - uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{secrets.GITHUB_TOKEN}}
+        tag: alderlake
+        file: ${{ steps.makepkg.outputs.repofile3 }}
+        overwrite: true
