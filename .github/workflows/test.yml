@@ -20,7 +20,7 @@ jobs:
         echo `git -C ${{ github.workflow }} rev-parse HEAD` > versions/${{ github.workflow }}
     - name: Remove Package
       run: |
-        rm -rf ${{ github.workdir }}
+        rm -rf ${{ github.workflow }}
     - name: Commit version
       run: |
         git add versions/${{ github.workflow }}
