@@ -1,6 +1,6 @@
 #!/bin/bash
 
-check-version() {
+function check-version() {
     REPO_URL=${1}
     REPO_PKG=${2}
 
@@ -14,7 +14,7 @@ check-version() {
     fi
 }
 
-git-svn() {
+function git-svn() {
     if [[ ! -z "$1" && ! -z "$2" ]]; then
         echo "Starting clone/copy ..."
         repo=$(echo $1 | sed 's/\/$\|.git$//')
