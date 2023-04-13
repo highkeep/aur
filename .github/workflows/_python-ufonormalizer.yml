@@ -61,3 +61,6 @@ jobs:
         tag: alderlake
         file: ${{ steps.makepkg.outputs.repofile3 }}
         overwrite: true
+    - name: Update Version
+      run: |
+        echo $(git ls-remote ${{ github.workflow }} heads/master) > versions/${{ github.workflow }}
