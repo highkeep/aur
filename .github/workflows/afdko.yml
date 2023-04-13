@@ -14,7 +14,7 @@ jobs:
     - name: Compare Package
       id: update
       run: |
-        sh versions.sh ${{ github.workflow }} >> $GITHUB_OUTPUT
+        source functions.sh && checkVersion ${{ github.workflow }} >> $GITHUB_OUTPUT
   package: 
     runs-on: ubuntu-latest
     needs: check
