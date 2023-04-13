@@ -1,0 +1,3 @@
+[submodule "psautohint"]
+	path = psautohint
+	url = https://aur.archlinux.org/psautohint.git
