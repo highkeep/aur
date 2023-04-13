@@ -16,9 +16,9 @@ jobs:
     needs: check
     if: ${{ needs.check.outputs.status }}
     runs-on: ubuntu-latest
+    steps:
     - name: Checkout
       uses: actions/checkout@v3
-    steps:
     - name: Clone Package
       run: |
         git clone https://aur.archlinux.org/${{ github.workflow }}.git
