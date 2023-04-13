@@ -16,5 +16,6 @@ jobs:
         ls -l
     - name: Update Version
       run: |
+        ls -l
         echo `git -C ${{ github.workflow }} rev-parse HEAD` > versions/${{ github.workflow }}
         cat versions/${{ github.workflow }}
