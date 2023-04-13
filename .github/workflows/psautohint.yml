@@ -25,9 +25,6 @@ jobs:
     - name: Clone Package
       run: |
         git clone https://aur.archlinux.org/${{ github.workflow }}.git
-    # - name: Update Version
-    #   run: |
-    #     echo $(git ls-remote ${{ github.workflow }} heads/master) > versions/${{ github.workflow }}  
     - name: Update version
       run: |
         echo `git -C ${{ github.workflow }} rev-parse HEAD` > versions/${{ github.workflow }}
