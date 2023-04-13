@@ -24,10 +24,7 @@ jobs:
       uses: actions/checkout@v3
     - name: Clone Package
       run: |
-        git clone https://aur.archlinux.org/${{ github.workflow }}.git
-    - name: Update SRCINFO
-      run: |
-        (cd ${{ github.workflow }} && makepkg --printsrcinfo > .SRCINFO)
+        sh git-svn.sh https://github.com/loathingKernel/PKGBUILDs.git aur/${{ github.workflow }}
     - name: Swap in alderlake
       run: |
         sed -i 's/=nocona/=alderlake/g;s/=core-avx2/=alderlake/g' ${{ github.workflow }}/PKGBUILD
@@ -77,16 +74,16 @@ jobs:
         tag: alderlake
         file: ${{ steps.makepkg.outputs.repofile3 }}
         overwrite: true
-    - name: Ignore package folder
-      run: | 
-        echo ${{ github.workflow }} >> .gitignore
-    - name: Update version
-      run: |
-        [ -f versions/${{ github.workflow }} ] || touch versions/${{ github.workflow }} && git add versions/${{ github.workflow }}
-        echo `git -C ${{ github.workflow }} rev-parse HEAD` > versions/${{ github.workflow }}
-    - name: Commit changes
-      run: |
-        git config --global user.name 'Nick Marshall'
-        git config --global user.email 'highkeep@users.noreply.github.com'
-        git commit -am "Version control"
-        git push
+    # - name: Ignore package folder
+    #   run: | 
+    #     echo ${{ github.workflow }} >> .gitignore
+    # - name: Update version
+    #   run: |
+    #     [ -f versions/${{ github.workflow }} ] || touch versions/${{ github.workflow }} && git add versions/${{ github.workflow }}
+    #     echo `git -C ${{ github.workflow }} rev-parse HEAD` > versions/${{ github.workflow }}
+    # - name: Commit changes
+    #   run: |
+    #     git config --global user.name 'Nick Marshall'
+    #     git config --global user.email 'highkeep@users.noreply.github.com'
+    #     git commit -am "Version control"
+    #     git push
