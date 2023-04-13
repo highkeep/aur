@@ -1,7 +1,4 @@
-env:
-  PKG: "psautohint"
-
-name: ${{ env.PKG }}
+name: psautohint
 
 on:
   workflow_dispatch:
@@ -14,13 +11,13 @@ jobs:
       uses: actions/checkout@v3
     - name: Clone Package
       run: |
-        git clone https://aur.archlinux.org/${{ env.PKG }}.git
+        git clone https://aur.archlinux.org/psautohint.git
         ls -l
     - name: Makepkg Build and Check
       id: makepkg
       uses: highkeep/pkgbuild-action@nvidia
       with:
-        pkgdir: "${{ env.PKG }}"
+        pkgdir: "psautohint"
         pacmanConf: "configs/alderlake_pacman.conf"
         makepkgConf: "configs/alderlake_makepkg.conf"
         repoReleaseTag: "alderlake"
