@@ -16,5 +16,5 @@ jobs:
         ls -l
     - name: Update Version
       run: |
-        echo `git ls-remote ${{ github.workflow }} heads/master` > versions/${{ github.workflow }}
+        echo `git -C ${{ github.workflow }} rev-parse HEAD` > versions/${{ github.workflow }}
         cat versions/${{ github.workflow }}
