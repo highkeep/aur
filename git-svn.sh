@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ ! -z "$1" && ! -z "$2" ]]; then
+if [ ! -z "$1" && ! -z "$2" ]; then
     echo "Starting clone/copy ..."
     repo=$(echo $1 | sed 's/\/$\|.git$//')
     svn export "$repo/trunk/$2"
