@@ -11,12 +11,12 @@ jobs:
       uses: actions/checkout@v3
     - name: Clone Package
       run: |
-        git clone https://aur.archlinux.org/${{ vars.JOB_NAME }}.git
+        git clone https://aur.archlinux.org/$GITHUB_WORKFLOW.git
     - name: Makepkg Build and Check
       id: makepkg
       uses: highkeep/pkgbuild-action@nvidia
       with:
-        pkgdir: "${{ vars.JOB_NAME }}"
+        pkgdir: "$GITHUB_WORKFLOW"
         pacmanConf: "configs/alderlake_pacman.conf"
         makepkgConf: "configs/alderlake_makepkg.conf"
         repoReleaseTag: "alderlake"
