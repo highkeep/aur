@@ -9,4 +9,4 @@ jobs:
     steps:
     - name: echo envs
       run: |
-        echo "${{ env.GITHUB_WORKFLOW }}.tar.gz"
+        echo "$GITHUB_WORKFLOW.tar.gz"
