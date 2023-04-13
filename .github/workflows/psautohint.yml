@@ -19,7 +19,7 @@ jobs:
         pkgdir: "psautohint"
         pacmanConf: "configs/alderlake_pacman.conf"
         makepkgConf: "configs/alderlake_makepkg.conf"
-        repoReleaseTag: "packages"
+        repoReleaseTag: "alderlake"
     - name: Print Package Files
       run: |
         echo "Successfully created the following package archive"
@@ -31,30 +31,30 @@ jobs:
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: packages
+        tag: alderlake
         file: ${{ steps.makepkg.outputs.pkgfile0 }}
         overwrite: true
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: packages
+        tag: alderlake
         file: ${{ steps.makepkg.outputs.repofile0 }}
         overwrite: true
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: packages
+        tag: alderlake
         file: ${{ steps.makepkg.outputs.repofile1 }}
         overwrite: true
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: packages
+        tag: alderlake
         file: ${{ steps.makepkg.outputs.repofile2 }}
         overwrite: true
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: packages
+        tag: alderlake
         file: ${{ steps.makepkg.outputs.repofile3 }}
         overwrite: true
