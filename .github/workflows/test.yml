@@ -15,7 +15,7 @@ jobs:
         sh versions.sh ${{ github.workflow }}
     - name: Check Result
       run: |
-        echo ${{ steps.update.outputs }}
+        echo ${{ steps.update.outputs.conclusion }}
 #        echo `git ls-remote -q https://aur.archlinux.org/${{ github.workflow }}.git heads/master | cut -f1`
 #        echo `cat versions/${{ github.workflow }} 2>/dev/null`
 #        git clone https://aur.archlinux.org/${{ github.workflow }}.git
