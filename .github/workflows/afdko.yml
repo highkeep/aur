@@ -18,6 +18,7 @@ jobs:
     - name: Compare Package
       id: update
       run: |
+        ls -l
         source functions.sh
         which check-version
         check-version ${{ env.REPO_URL }} ${{ env.REPO_PKG }}
