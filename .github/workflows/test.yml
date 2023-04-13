@@ -12,7 +12,7 @@ jobs:
     - name: Compare Package
       id: update
       run: |
-        sh versions.sh
+        sh versions.sh ${{ github.workflow }}
     - name: Check Result
       run: |
         echo ${{ steps.update.outputs }}
