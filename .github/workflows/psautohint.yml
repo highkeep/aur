@@ -9,9 +9,10 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3
-    - name: Update Submodules
+    - name: Clone Package
       run: |
-        git submodule update --remote
+        git clone https://aur.archlinux.org/psautohint.git
+        ls -l
     - name: Makepkg Build and Check
       id: makepkg
       uses: highkeep/pkgbuild-action@master
