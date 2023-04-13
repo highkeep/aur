@@ -5,9 +5,12 @@ on:
 
 jobs:
   check:
+    runs-on: ubuntu-latest
     outputs:
       status: ${{ steps.update.outputs.update }}
     steps:
+    - name: Checkout
+      uses: actions/checkout@v3
     - name: Compare Package
       id: update
       run: |
