@@ -10,84 +10,86 @@ on:
     - cron: '0 7 */3 * *'
 
 jobs:
-  # check:
-  #   runs-on: ubuntu-latest
-  #   outputs:
-  #     status: ${{ steps.update.outputs.update }}
-  #   steps:
-  #   - name: Checkout
-  #     uses: actions/checkout@v3
-  #   - name: Compare Package
-  #     id: update
-  #     run: |
-  #       source functions.sh && echo $(check-version ${{ env.REPO_URL }} ${{ env.REPO_PKG }}) >> $GITHUB_OUTPUT
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      status: ${{ steps.update.outputs.update }}
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Compare Package
+      id: update
+      run: |
+        source functions.sh && echo "sum=$(genLocalSum ${{ env.REPO_PKG }})" >> $GITHUB_OUTPUT
+        source functions.sh && echo $(CheckLocalVersion ${{ env.REPO_PKG }}) >> $GITHUB_OUTPUT
   package: 
     runs-on: ubuntu-latest
-    # needs: check
-    # if: ${{ needs.check.outputs.status == 'true' }}
+    needs: check
+    if: ${{ needs.check.outputs.status == 'true' }}
     steps:
     - name: Checkout
       uses: actions/checkout@v3
     - name: Clone Package
       run: |
         source functions.sh && git-svn https://github.com/loathingKernel/PKGBUILDs.git aur/${{ github.workflow }}
-    - name: Swap in alderlake
-      run: |
-        sed -i 's/=nocona/=alderlake/g;s/=core-avx2/=alderlake/g' ${{ env.REPO_PKG }}/PKGBUILD
-    - name: Makepkg Build and Check
-      id: makepkg
-      uses: highkeep/pkgbuild-action@master
-      with:
-        pkgdir: ${{ env.REPO_PKG }}
-        pacmanConf: "configs/alderlake_pacman.conf"
-        makepkgConf: "configs/alderlake_makepkg.conf"
-        multilib: true
-        repoReleaseTag: "alderlake"
-    - name: Print Package Files
-      run: |
-        echo "Successfully created the following package archive"
-        echo "Package: ${{ steps.makepkg.outputs.pkgfile0 }}"
-        echo "Package: ${{ steps.makepkg.outputs.repofile0 }}"
-        echo "Package: ${{ steps.makepkg.outputs.repofile1 }}"
-        echo "Package: ${{ steps.makepkg.outputs.repofile2 }}"
-        echo "Package: ${{ steps.makepkg.outputs.repofile3 }}"
-    - uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: alderlake
-        file: ${{ steps.makepkg.outputs.pkgfile0 }}
-        overwrite: true
-    - uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: alderlake
-        file: ${{ steps.makepkg.outputs.repofile0 }}
-        overwrite: true
-    - uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: alderlake
-        file: ${{ steps.makepkg.outputs.repofile1 }}
-        overwrite: true
-    - uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: alderlake
-        file: ${{ steps.makepkg.outputs.repofile2 }}
-        overwrite: true
-    - uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: alderlake
-        file: ${{ steps.makepkg.outputs.repofile3 }}
-        overwrite: true
+        echo ${{ needs.check.outputs.sum }}
+    # - name: Swap in alderlake
+    #   run: |
+    #     sed -i 's/=nocona/=alderlake/g;s/=core-avx2/=alderlake/g' ${{ env.REPO_PKG }}/PKGBUILD
+    # - name: Makepkg Build and Check
+    #   id: makepkg
+    #   uses: highkeep/pkgbuild-action@master
+    #   with:
+    #     pkgdir: ${{ env.REPO_PKG }}
+    #     pacmanConf: "configs/alderlake_pacman.conf"
+    #     makepkgConf: "configs/alderlake_makepkg.conf"
+    #     multilib: true
+    #     repoReleaseTag: "alderlake"
+    # - name: Print Package Files
+    #   run: |
+    #     echo "Successfully created the following package archive"
+    #     echo "Package: ${{ steps.makepkg.outputs.pkgfile0 }}"
+    #     echo "Package: ${{ steps.makepkg.outputs.repofile0 }}"
+    #     echo "Package: ${{ steps.makepkg.outputs.repofile1 }}"
+    #     echo "Package: ${{ steps.makepkg.outputs.repofile2 }}"
+    #     echo "Package: ${{ steps.makepkg.outputs.repofile3 }}"
+    # - uses: svenstaro/upload-release-action@v2
+    #   with:
+    #     repo_token: ${{secrets.GITHUB_TOKEN}}
+    #     tag: alderlake
+    #     file: ${{ steps.makepkg.outputs.pkgfile0 }}
+    #     overwrite: true
+    # - uses: svenstaro/upload-release-action@v2
+    #   with:
+    #     repo_token: ${{secrets.GITHUB_TOKEN}}
+    #     tag: alderlake
+    #     file: ${{ steps.makepkg.outputs.repofile0 }}
+    #     overwrite: true
+    # - uses: svenstaro/upload-release-action@v2
+    #   with:
+    #     repo_token: ${{secrets.GITHUB_TOKEN}}
+    #     tag: alderlake
+    #     file: ${{ steps.makepkg.outputs.repofile1 }}
+    #     overwrite: true
+    # - uses: svenstaro/upload-release-action@v2
+    #   with:
+    #     repo_token: ${{secrets.GITHUB_TOKEN}}
+    #     tag: alderlake
+    #     file: ${{ steps.makepkg.outputs.repofile2 }}
+    #     overwrite: true
+    # - uses: svenstaro/upload-release-action@v2
+    #   with:
+    #     repo_token: ${{secrets.GITHUB_TOKEN}}
+    #     tag: alderlake
+    #     file: ${{ steps.makepkg.outputs.repofile3 }}
+    #     overwrite: true
     # - name: Ignore package folder
     #   run: | 
     #     grep -w /${{ env.REPO_PKG }} .gitignore >/dev/null || echo /${{ env.REPO_PKG }} >> .gitignore
     # - name: Update version
     #   run: |
     #     [ -f versions/${{ env.REPO_PKG }} ] || touch versions/${{ env.REPO_PKG }} && git add versions/${{ env.REPO_PKG }}
-    #     echo `git -C ${{ env.REPO_PKG }} rev-parse HEAD` > versions/${{ env.REPO_PKG }}
+    #     echo $() > versions/${{ env.REPO_PKG }}
     # - name: Commit changes
     #   run: |
     #     git config --global user.name 'Nick Marshall'

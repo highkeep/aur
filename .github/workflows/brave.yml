@@ -20,7 +20,7 @@ jobs:
     - name: Compare Package
       id: update
       run: |
-        source functions.sh && echo $(check-version ${{ env.REPO_URL }} ${{ env.REPO_PKG }}) >> $GITHUB_OUTPUT
+        source functions.sh && echo $(checkGitVersion ${{ env.REPO_URL }} ${{ env.REPO_PKG }}) >> $GITHUB_OUTPUT
   package: 
     runs-on: ubuntu-latest
     needs: check

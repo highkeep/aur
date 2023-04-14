@@ -1,6 +1,16 @@
 #!/bin/bash
 
-check-version() {
+git-svn() {
+    if [[ ! -z "$1" && ! -z "$2" ]]; then
+        echo "Starting clone/copy ..."
+        repo=$(echo $1 | sed 's/\/$\|.git$//')
+        svn export "$repo/trunk/$2"
+    else
+        echo "Use: git-svn <repository> <subdirectory>"
+    fi
+}
+
+checkGitVersion() {
     REPO_URL="$1"
     REPO_PKG="$2"
 
@@ -14,12 +24,10 @@ check-version() {
     fi
 }
 
-git-svn() {
-    if [[ ! -z "$1" && ! -z "$2" ]]; then
-        echo "Starting clone/copy ..."
-        repo=$(echo $1 | sed 's/\/$\|.git$//')
-        svn export "$repo/trunk/$2"
-    else
-        echo "Use: git-svn <repository> <subdirectory>"
-    fi
+genLocalSum() {
+    find ${1} -type f -exec md5sum {} \; | cut -d" " -f1 | sha256sum | cut -f1 -d" "
+}
+
+checkLocalVersion() {
+
 }
