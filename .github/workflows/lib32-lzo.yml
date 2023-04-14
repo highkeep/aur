@@ -6,8 +6,8 @@ env:
 
 on:
   workflow_dispatch:
-  # schedule:
-  #   - cron: '0 7 */3 * *'
+  schedule:
+    - cron: '0 7 */3 * *'
 
 jobs:
   # check:
@@ -41,7 +41,7 @@ jobs:
         pkgdir: ${{ env.REPO_PKG }}
         pacmanConf: "configs/alderlake_pacman.conf"
         makepkgConf: "configs/alderlake_makepkg.conf"
-        nvidiaUtils: true
+        multilib: true
         repoReleaseTag: "alderlake"
     - name: Print Package Files
       run: |

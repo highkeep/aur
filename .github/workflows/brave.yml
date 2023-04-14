@@ -36,11 +36,12 @@ jobs:
         sed -i 's/=nocona/=alderlake/g;s/=core-avx2/=alderlake/g' ${{ env.REPO_PKG }}/PKGBUILD
     - name: Makepkg Build and Check
       id: makepkg
-      uses: highkeep/pkgbuild-action@nvidia
+      uses: highkeep/pkgbuild-action@master
       with:
         pkgdir: ${{ env.REPO_PKG }}
         pacmanConf: "configs/alderlake_pacman.conf"
         makepkgConf: "configs/alderlake_makepkg.conf"
+        multilib: true
         repoReleaseTag: "alderlake"
     - name: Print Package Files
       run: |
