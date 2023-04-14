@@ -24,7 +24,7 @@ jobs:
     - name: Compare Package
       id: update
       run: |
-        source functions.sh && echo "sum=$(genLocalSum ${{ env.REPO_PKG }})"
+        source functions.sh && echo "sum=$(genLocalSum ${{ env.REPO_PKG }})" >> $GITHUB_OUTPUT
         source functions.sh && echo $(checkLocalVersion ${{ env.REPO_PKG }}) >> $GITHUB_OUTPUT
   package: 
     runs-on: ubuntu-latest
