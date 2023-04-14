@@ -29,5 +29,14 @@ genLocalSum() {
 }
 
 checkLocalVersion() {
+    REPO_PKG="$1"
 
+    remoteVersion=$(genLocalSum ${REPO_PKG})
+    currentVersion=$(cat versions/${REPO_PKG} 2>/dev/null)
+
+    if [[ "${remoteVersion}" != "${currentVersion}" ]]; then
+        echo "update=true"
+    else
+        echo "update=false"
+    fi
 }
