@@ -41,7 +41,6 @@ jobs:
         pkgdir: ${{ env.REPO_PKG }}
         pacmanConf: "configs/alderlake_pacman.conf"
         makepkgConf: "configs/alderlake_makepkg.conf"
-        multilib: true
         nvidiaUtils: true
         repoReleaseTag: "alderlake"
     - name: Print Package Files
