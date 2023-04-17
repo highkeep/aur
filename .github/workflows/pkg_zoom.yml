@@ -1,12 +1,14 @@
-name: _mingw-w64-tools
+name: pkg_zoom
 
 env:
   REPO_URL: "https://aur.archlinux.org"
-  REPO_PKG: mingw-w64-tools
+  REPO_PKG: zoom
 
 on:
   workflow_call:
   workflow_dispatch:
+  schedule:
+    - cron: '0 */12 * * *'
 
 jobs:
   check:
@@ -37,7 +39,6 @@ jobs:
         pkgdir: ${{ env.REPO_PKG }}
         pacmanConf: "configs/generic_x86_64_pacman.conf"
         makepkgConf: "configs/generic_x86_64_makepkg.conf"
-        makepkgArgs: --skippgpcheck
         repoReleaseTag: "generic_x86_64"
     - name: Print Package Files
       run: |
@@ -79,7 +80,7 @@ jobs:
         overwrite: true
     - name: Ignore package folder
       run: | 
-        grep -w /${{ env.REPO_PKG }} .gitignore >/dev/null || echo /${{ env.REPO_PKG }} >> .gitignore
+        grep /${{ env.REPO_PKG }} .gitignore >/dev/null || echo /${{ env.REPO_PKG }} >> .gitignore
     - name: Update version
       run: |
         [ -f versions/${{ env.REPO_PKG }} ] || touch versions/${{ env.REPO_PKG }} && git add versions/${{ env.REPO_PKG }}

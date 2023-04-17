@@ -1,7 +1,9 @@
-name: gwe-flow
+name: flow_gwe
 
 on:
   workflow_dispatch:
+  schedule:
+  - cron: '0 0 */3 * *'
 
 jobs:
   python-py3nvml:

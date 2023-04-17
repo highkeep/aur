@@ -1,4 +1,4 @@
-name: afdko
+name: _afdko
 
 env:
   REPO_URL: "https://aur.archlinux.org"
@@ -6,9 +6,6 @@ env:
 
 on:
   workflow_call:
-  workflow_dispatch:
-  # schedule:
-  #   - cron: '0 */12 * * *'
 
 jobs:
   check:

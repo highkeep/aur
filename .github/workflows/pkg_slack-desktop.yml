@@ -1,14 +1,14 @@
-name: vkd3d-proton-mingw
+name: pkg_slack-desktop
 
 env:
   REPO_URL: "https://aur.archlinux.org"
-  REPO_PKG: vkd3d-proton-mingw
+  REPO_PKG: slack-desktop
 
 on:
   workflow_call:
   workflow_dispatch:
-  # schedule:
-  #   - cron: '0 */12 * * *'
+  schedule:
+    - cron: '0 */12 * * *'
 
 jobs:
   check:
@@ -80,7 +80,7 @@ jobs:
         overwrite: true
     - name: Ignore package folder
       run: | 
-        grep -w /${{ env.REPO_PKG }} .gitignore >/dev/null || echo /${{ env.REPO_PKG }} >> .gitignore
+        grep /${{ env.REPO_PKG }} .gitignore >/dev/null || echo /${{ env.REPO_PKG }} >> .gitignore
     - name: Update version
       run: |
         [ -f versions/${{ env.REPO_PKG }} ] || touch versions/${{ env.REPO_PKG }} && git add versions/${{ env.REPO_PKG }}

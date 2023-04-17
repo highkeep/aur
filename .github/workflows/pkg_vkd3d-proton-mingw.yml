@@ -1,14 +1,14 @@
-name: wine-ge-custom
+name: pkg_vkd3d-proton-mingw
 
 env:
   REPO_URL: "https://aur.archlinux.org"
-  REPO_PKG: wine-ge-custom
+  REPO_PKG: vkd3d-proton-mingw
 
 on:
   workflow_call:
   workflow_dispatch:
-  # schedule:
-  #   - cron: '0 */12 * * *'
+  schedule:
+  - cron: '0 */6 * * *'
 
 jobs:
   check:
@@ -39,7 +39,6 @@ jobs:
         pkgdir: ${{ env.REPO_PKG }}
         pacmanConf: "configs/generic_x86_64_pacman.conf"
         makepkgConf: "configs/generic_x86_64_makepkg.conf"
-        nvidiaUtils: true
         repoReleaseTag: "generic_x86_64"
     - name: Print Package Files
       run: |
