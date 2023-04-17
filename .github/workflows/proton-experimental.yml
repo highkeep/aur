@@ -6,9 +6,6 @@ env:
 
 on:
   workflow_call:
-  workflow_dispatch:
-  # schedule:
-  #   - cron: '0 */12 * * *'
 
 jobs:
   check:

@@ -1,4 +1,4 @@
-name: lib32-lzo
+name: lib32-lzo-dep
 
 env:
   REPO_URL: "https://github.com/loathingKernel/PKGBUILDs.git"
@@ -6,9 +6,6 @@ env:
 
 on:
   workflow_call:
-  workflow_dispatch:
-  # schedule:
-  #   - cron: '0 */12 * * *'
 
 jobs:
   check:

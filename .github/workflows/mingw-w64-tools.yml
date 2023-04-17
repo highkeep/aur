@@ -1,4 +1,4 @@
-name: mingw-w64-tools
+name: mingw-w64-tools-dep
 
 env:
   REPO_URL: "https://aur.archlinux.org"
@@ -7,8 +7,6 @@ env:
 on:
   workflow_call:
   workflow_dispatch:
-  # schedule:
-  #   - cron: '0 */12 * * *'
 
 jobs:
   check:
