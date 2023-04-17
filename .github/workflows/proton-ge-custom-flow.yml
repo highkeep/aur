@@ -13,7 +13,7 @@ jobs:
     uses: highkeep/aur/.github/workflows/python-ufonormalizer.yml@main
   afdko:
     name: Run afdko
-    needs: psautohint
+    needs: python-ufonormalizer
     uses: highkeep/aur/.github/workflows/afdko.yml@main
   lib32-lzo:
     name: Run lib32-lzo
