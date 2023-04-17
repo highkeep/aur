@@ -1,7 +1,7 @@
 name: lib32-lzo
 
 env:
-  REPO_URL: "https://aur.archlinux.org"
+  REPO_URL: "https://github.com/loathingKernel/PKGBUILDs.git"
   REPO_PKG: lib32-lzo
 
 on:
@@ -21,7 +21,7 @@ jobs:
       uses: actions/checkout@v3
     - name: Clone Package
       run: |
-        source functions.sh && git-svn https://github.com/loathingKernel/PKGBUILDs.git aur/${{ github.workflow }}
+        source functions.sh && git-svn ${{ env.REPO_URL }} aur/${{ env.REPO_PKG }}
     - name: Compare Package
       id: update
       run: |
@@ -36,7 +36,7 @@ jobs:
       uses: actions/checkout@v3
     - name: Clone Package
       run: |
-        source functions.sh && git-svn https://github.com/loathingKernel/PKGBUILDs.git aur/${{ github.workflow }}
+        source functions.sh && git-svn ${{ env.REPO_URL }} aur/${{ env.REPO_PKG }}
     - name: Swap in alderlake
       run: |
         sed -i 's/=nocona/=alderlake/g;s/=core-avx2/=alderlake/g' ${{ env.REPO_PKG }}/PKGBUILD
