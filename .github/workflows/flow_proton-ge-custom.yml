@@ -1,4 +1,4 @@
-name: proton-experimental-flow
+name: flow_proton-ge-custom
 
 on:
   workflow_dispatch:
@@ -25,7 +25,7 @@ jobs:
     name: Run mingw-w64-tools
     needs: lib32-lzo
     uses: highkeep/aur/.github/workflows/mingw-w64-tools.yml@main
-  proton-experimental:
-    name: Run proton-experimental
+  proton-ge-custom:
+    name: Run proton-ge-custom
     needs: [afdko,lib32-lzo,mingw-w64-tools]
-    uses: highkeep/aur/.github/workflows/proton-experimental.yml@main
+    uses: highkeep/aur/.github/workflows/proton-ge-custom.yml@main
