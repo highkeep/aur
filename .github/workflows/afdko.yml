@@ -31,17 +31,14 @@ jobs:
     - name: Clone Package
       run: |
         git clone ${{ env.REPO_URL }}/${{ env.REPO_PKG }}.git
-    - name: Swap in alderlake
-      run: |
-        sed -i 's/=nocona/=alderlake/g;s/=core-avx2/=alderlake/g' ${{ env.REPO_PKG }}/PKGBUILD
     - name: Makepkg Build and Check
       id: makepkg
       uses: highkeep/pkgbuild-action@master
       with:
         pkgdir: ${{ env.REPO_PKG }}
-        pacmanConf: "configs/alderlake_pacman.conf"
-        makepkgConf: "configs/alderlake_makepkg.conf"
-        repoReleaseTag: "alderlake"
+        pacmanConf: "configs/generic_x86_64_pacman.conf"
+        makepkgConf: "configs/generic_x86_64_makepkg.conf"
+        repoReleaseTag: "generic_x86_64"
     - name: Print Package Files
       run: |
         echo "Successfully created the following package archive"
@@ -53,31 +50,31 @@ jobs:
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: alderlake
+        tag: generic_x86_64
         file: ${{ steps.makepkg.outputs.pkgfile0 }}
         overwrite: true
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: alderlake
+        tag: generic_x86_64
         file: ${{ steps.makepkg.outputs.repofile0 }}
         overwrite: true
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: alderlake
+        tag: generic_x86_64
         file: ${{ steps.makepkg.outputs.repofile1 }}
         overwrite: true
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: alderlake
+        tag: generic_x86_64
         file: ${{ steps.makepkg.outputs.repofile2 }}
         overwrite: true
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: alderlake
+        tag: generic_x86_64
         file: ${{ steps.makepkg.outputs.repofile3 }}
         overwrite: true
     - name: Ignore package folder
