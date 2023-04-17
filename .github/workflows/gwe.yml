@@ -37,10 +37,10 @@ jobs:
       uses: highkeep/pkgbuild-action@master
       with:
         pkgdir: ${{ env.REPO_PKG }}
-        pacmanConf: "configs/generic_pacman.conf"
-        makepkgConf: "configs/generic_makepkg.conf"
+        pacmanConf: "configs/alderlake_pacman.conf"
+        makepkgConf: "configs/alderlake_makepkg.conf"
         nvidiaUtils: true
-        repoReleaseTag: "generic"
+        repoReleaseTag: "alderlake"
     - name: Print Package Files
       run: |
         echo "Successfully created the following package archive"
@@ -52,31 +52,31 @@ jobs:
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: generic
+        tag: alderlake
         file: ${{ steps.makepkg.outputs.pkgfile0 }}
         overwrite: true
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: generic
+        tag: alderlake
         file: ${{ steps.makepkg.outputs.repofile0 }}
         overwrite: true
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: generic
+        tag: alderlake
         file: ${{ steps.makepkg.outputs.repofile1 }}
         overwrite: true
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: generic
+        tag: alderlake
         file: ${{ steps.makepkg.outputs.repofile2 }}
         overwrite: true
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: generic
+        tag: alderlake
         file: ${{ steps.makepkg.outputs.repofile3 }}
         overwrite: true
     - name: Ignore package folder
