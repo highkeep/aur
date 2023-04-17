@@ -21,7 +21,7 @@ jobs:
     uses: highkeep/aur/.github/workflows/mingw-w64-tools.yml@main
   lib32-lzo:
     name: Run lib32-lzo
-    needs: python-ufonormalizer
+    needs: [mingw-w64-tools,python-ufonormalizer]
     uses: highkeep/aur/.github/workflows/lib32-lzo.yml@main
   proton-experimental:
     name: Run proton-experimental
