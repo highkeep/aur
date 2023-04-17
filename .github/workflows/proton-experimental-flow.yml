@@ -15,14 +15,14 @@ jobs:
     name: Run afdko
     needs: [psautohint,python-ufonormalizer]
     uses: highkeep/aur/.github/workflows/afdko.yml@main
+  lib32-lzo:
+    name: Run lib32-lzo
+    needs: [adfko,python-ufonormalizer]
+    uses: highkeep/aur/.github/workflows/lib32-lzo.yml@main
   mingw-w64-tools:
     name: Run mingw-w64-tools
     needs: afdko
     uses: highkeep/aur/.github/workflows/mingw-w64-tools.yml@main
-  lib32-lzo:
-    name: Run lib32-lzo
-    needs: [mingw-w64-tools,python-ufonormalizer]
-    uses: highkeep/aur/.github/workflows/lib32-lzo.yml@main
   proton-experimental:
     name: Run proton-experimental
     needs: [afdko,mingw-w64-tools,lib32-lzo]
