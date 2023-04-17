@@ -5,23 +5,23 @@ on:
 
 jobs:
   psautohint:
-    - name: Run psautohint
-      uses: highkeep/aur/.github/workflows/psautohint.yml@main
+    name: Run psautohint
+    uses: highkeep/aur/.github/workflows/psautohint.yml@main
   python-ufoprocessor:
-    - name: Run python-ufoprocessor
-      uses: highkeep/aur/.github/workflows/python-ufoprocessor.yml@main
+    name: Run python-ufoprocessor
+    uses: highkeep/aur/.github/workflows/python-ufoprocessor.yml@main
   afdko:
-    - name: Run afdko
-      needs: [psautohint,python-ufoprocessor]
-      uses: highkeep/aur/.github/workflows/afdko.yml@main
+    name: Run afdko
+    needs: [psautohint,python-ufoprocessor]
+    uses: highkeep/aur/.github/workflows/afdko.yml@main
   mingw-w64-tools:
-    - name: Run mingw-w64-tools
-      uses: highkeep/aur/.github/workflows/mingw-w64-tools.yml@main
+    name: Run mingw-w64-tools
+    uses: highkeep/aur/.github/workflows/mingw-w64-tools.yml@main
   lib32-lzo:
-    - name: Run lib32-lzo
-      needs: python-ufoprocessor
-      uses: highkeep/aur/.github/workflows/lib32-lzo.yml@main
+    name: Run lib32-lzo
+    needs: python-ufoprocessor
+    uses: highkeep/aur/.github/workflows/lib32-lzo.yml@main
   proton-experimental:
-    - name: Run proton-experimental
-      needs: [afdko,mingw-w64-tools,lib32-lzo]
-      uses: highkeep/aur/.github/workflows/proton-experimental.yml@main
+    name: Run proton-experimental
+    needs: [afdko,mingw-w64-tools,lib32-lzo]
+    uses: highkeep/aur/.github/workflows/proton-experimental.yml@main
