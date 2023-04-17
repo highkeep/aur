@@ -9,6 +9,7 @@ jobs:
     uses: highkeep/aur/.github/workflows/psautohint.yml@main
   python-ufonormalizer:
     name: Run python-ufonormalizer
+    needs: psautohint
     uses: highkeep/aur/.github/workflows/python-ufonormalizer.yml@main
   afdko:
     name: Run afdko
@@ -16,6 +17,7 @@ jobs:
     uses: highkeep/aur/.github/workflows/afdko.yml@main
   mingw-w64-tools:
     name: Run mingw-w64-tools
+    needs: afdko
     uses: highkeep/aur/.github/workflows/mingw-w64-tools.yml@main
   lib32-lzo:
     name: Run lib32-lzo
