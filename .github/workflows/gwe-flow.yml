@@ -1,0 +1,17 @@
+name: gwe-flow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  python-py3nvml:
+    name: Run python-py3nvml
+    uses: highkeep/aur/.github/workflows/python-py3nvml.yml@main
+  python-injector:
+    name: Run python-injector
+    needs: python-py3nvml
+    uses: highkeep/aur/.github/workflows/python-injector.yml@main
+  gwe:
+    name: Run gwe
+    needs: [python-py3nvml,python-injector]
+    uses: highkeep/aur/.github/workflows/gwe.yml@main

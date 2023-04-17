@@ -2,9 +2,10 @@ name: vkd3d-proton-mingw
 
 env:
   REPO_URL: "https://aur.archlinux.org"
-  REPO_PKG: ${{ github.workflow }}
+  REPO_PKG: vkd3d-proton-mingw
 
 on:
+  workflow_call:
   workflow_dispatch:
   # schedule:
   #   - cron: '0 */12 * * *'

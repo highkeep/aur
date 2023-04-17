@@ -2,9 +2,10 @@ name: python-injector
 
 env:
   REPO_URL: "https://aur.archlinux.org"
-  REPO_PKG: ${{ github.workflow }}
+  REPO_PKG: python-injector
 
 on:
+  workflow_call:
   workflow_dispatch:
   # schedule:
   #   - cron: '0 */12 * * *'

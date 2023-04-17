@@ -2,9 +2,10 @@ name: zoom
 
 env:
   REPO_URL: "https://aur.archlinux.org"
-  REPO_PKG: ${{ github.workflow }}
+  REPO_PKG: zoom
 
 on:
+  workflow_call:
   workflow_dispatch:
   # schedule:
   #   - cron: '0 */12 * * *'

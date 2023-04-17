@@ -15,7 +15,7 @@ checkGitVersion() {
     REPO_PKG="$2"
 
     remoteVersion=$(git ls-remote -q ${REPO_URL}/${REPO_PKG}.git heads/master | cut -f1)
-    currentVersion=$(cat versions/${REPO_PKG} 2>/dev/null)
+    currentVersion=$(/usr/bin/cat versions/${REPO_PKG} 2>/dev/null)
 
     if [[ "${remoteVersion}" != "${currentVersion}" ]]; then
         echo "update=true"
@@ -32,7 +32,7 @@ checkLocalVersion() {
     REPO_PKG="$1"
 
     remoteVersion=$(genLocalSum ${REPO_PKG})
-    currentVersion=$(cat versions/${REPO_PKG} 2>/dev/null)
+    currentVersion=$(/usr/bin/cat versions/${REPO_PKG} 2>/dev/null)
 
     if [[ "${remoteVersion}" != "${currentVersion}" ]]; then
         echo "update=true"
