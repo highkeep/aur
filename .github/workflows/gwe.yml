@@ -5,6 +5,7 @@ env:
   REPO_PKG: ${{ github.workflow }}
 
 on:
+  workflow_call:
   workflow_dispatch:
   # schedule:
   #   - cron: '0 */12 * * *'
