@@ -7,19 +7,19 @@ jobs:
   psautohint:
     name: Run psautohint
     uses: highkeep/aur/.github/workflows/psautohint.yml@main
-  python-ufoprocessor:
-    name: Run python-ufoprocessor
-    uses: highkeep/aur/.github/workflows/python-ufoprocessor.yml@main
+  python-ufonormalizer:
+    name: Run python-ufonormalizer
+    uses: highkeep/aur/.github/workflows/python-ufonormalizer.yml@main
   afdko:
     name: Run afdko
-    needs: [psautohint,python-ufoprocessor]
+    needs: [psautohint,python-ufonormalizer]
     uses: highkeep/aur/.github/workflows/afdko.yml@main
   mingw-w64-tools:
     name: Run mingw-w64-tools
     uses: highkeep/aur/.github/workflows/mingw-w64-tools.yml@main
   lib32-lzo:
     name: Run lib32-lzo
-    needs: python-ufoprocessor
+    needs: python-ufonormalizer
     uses: highkeep/aur/.github/workflows/lib32-lzo.yml@main
   proton-experimental:
     name: Run proton-experimental
