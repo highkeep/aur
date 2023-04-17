@@ -1,4 +1,4 @@
-name: brave
+name: pkg_brave
 
 env:
   REPO_URL: "https://aur.archlinux.org"

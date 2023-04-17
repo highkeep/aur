@@ -1,4 +1,4 @@
-name: _wine-ge-custom
+name: pkg_wine-ge-custom
 
 env:
   REPO_URL: "https://aur.archlinux.org"
@@ -6,6 +6,8 @@ env:
 
 on:
   workflow_call:
+  schedule:
+  - cron: '0 */6 * * *'
 
 jobs:
   check:

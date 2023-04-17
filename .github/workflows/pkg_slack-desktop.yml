@@ -1,4 +1,4 @@
-name: slack-desktop
+name: pkg_slack-desktop
 
 env:
   REPO_URL: "https://aur.archlinux.org"

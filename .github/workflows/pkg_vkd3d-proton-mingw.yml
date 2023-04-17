@@ -1,4 +1,4 @@
-name: vkd3d-proton-mingw
+name: pkg_vkd3d-proton-mingw
 
 env:
   REPO_URL: "https://aur.archlinux.org"

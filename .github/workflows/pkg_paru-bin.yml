@@ -1,4 +1,4 @@
-name: paru-bin
+name: pkg_paru-bin
 
 env:
   REPO_URL: "https://aur.archlinux.org"

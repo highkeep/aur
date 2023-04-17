@@ -1,4 +1,4 @@
-name: zoom
+name: pkg_zoom
 
 env:
   REPO_URL: "https://aur.archlinux.org"
