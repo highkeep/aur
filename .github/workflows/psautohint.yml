@@ -5,6 +5,7 @@ env:
   REPO_PKG: psautohint
 
 on:
+  workflow_call:
   workflow_dispatch:
   # schedule:
   #   - cron: '0 */12 * * *'

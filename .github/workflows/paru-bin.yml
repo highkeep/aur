@@ -5,6 +5,7 @@ env:
   REPO_PKG: paru-bin
 
 on:
+  workflow_call:
   workflow_dispatch:
   # schedule:
   #   - cron: '0 */12 * * *'

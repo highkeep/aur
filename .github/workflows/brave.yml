@@ -5,6 +5,7 @@ env:
   REPO_PKG: brave
 
 on:
+  workflow_call:
   workflow_dispatch:
   # schedule:
   #   - cron: '0 7 */3 * *'
