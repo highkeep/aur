@@ -2,7 +2,7 @@ name: proton-experimental
 
 env:
   REPO_URL: "https://aur.archlinux.org"
-  REPO_PKG: ${{ github.workflow }}
+  REPO_PKG: proton-experimental
 
 on:
   workflow_dispatch:

@@ -2,7 +2,7 @@ name: proton-ge-custom
 
 env:
   REPO_URL: "https://aur.archlinux.org"
-  REPO_PKG: ${{ github.workflow }}
+  REPO_PKG: proton-ge-custom
 
 on:
   workflow_dispatch:

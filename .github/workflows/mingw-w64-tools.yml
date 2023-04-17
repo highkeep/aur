@@ -2,7 +2,7 @@ name: mingw-w64-tools
 
 env:
   REPO_URL: "https://aur.archlinux.org"
-  REPO_PKG: ${{ github.workflow }}
+  REPO_PKG: mingw-w64-tools
 
 on:
   workflow_dispatch:

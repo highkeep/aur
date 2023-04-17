@@ -2,7 +2,7 @@ name: brave
 
 env:
   REPO_URL: "https://aur.archlinux.org"
-  REPO_PKG: ${{ github.workflow }}
+  REPO_PKG: brave
 
 on:
   workflow_dispatch:

@@ -2,7 +2,7 @@ name: afdko
 
 env:
   REPO_URL: "https://aur.archlinux.org"
-  REPO_PKG: ${{ github.workflow }}
+  REPO_PKG: afdko
 
 on:
   workflow_dispatch:

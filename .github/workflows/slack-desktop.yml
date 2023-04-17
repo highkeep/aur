@@ -2,7 +2,7 @@ name: slack-desktop
 
 env:
   REPO_URL: "https://aur.archlinux.org"
-  REPO_PKG: ${{ github.workflow }}
+  REPO_PKG: slack-desktop
 
 on:
   workflow_dispatch:

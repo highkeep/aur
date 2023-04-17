@@ -2,7 +2,7 @@ name: paru-bin
 
 env:
   REPO_URL: "https://aur.archlinux.org"
-  REPO_PKG: ${{ github.workflow }}
+  REPO_PKG: paru-bin
 
 on:
   workflow_dispatch:
