@@ -2,7 +2,7 @@ name: gwe
 
 env:
   REPO_URL: "https://aur.archlinux.org"
-  REPO_PKG: ${{ github.workflow }}
+  REPO_PKG: gwe
 
 on:
   workflow_call:
