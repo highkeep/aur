@@ -25,5 +25,5 @@ jobs:
     uses: highkeep/aur/.github/workflows/mingw-w64-tools.yml@main
   proton-ge-custom:
     name: Run proton-ge-custom
-    needs: [afdko,mingw-w64-tools,lib32-lzo]
+    needs: [afdko,lib32-lzo,mingw-w64-tools]
     uses: highkeep/aur/.github/workflows/proton-ge-custom.yml@main
