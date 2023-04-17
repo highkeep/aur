@@ -1,4 +1,4 @@
-name: proton-ge-custom-dep
+name: _proton-ge-custom
 
 env:
   REPO_URL: "https://aur.archlinux.org"

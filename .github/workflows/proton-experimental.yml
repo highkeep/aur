@@ -1,4 +1,4 @@
-name: proton-experimental
+name: _proton-experimental
 
 env:
   REPO_URL: "https://aur.archlinux.org"

@@ -1,4 +1,4 @@
-name: afdko-dep
+name: _afdko
 
 env:
   REPO_URL: "https://aur.archlinux.org"

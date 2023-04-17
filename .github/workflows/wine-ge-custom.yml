@@ -1,4 +1,4 @@
-name: wine-ge-custom-dep
+name: _wine-ge-custom
 
 env:
   REPO_URL: "https://aur.archlinux.org"

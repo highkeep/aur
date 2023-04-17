@@ -1,4 +1,4 @@
-name: psautohint-dep
+name: _psautohint
 
 env:
   REPO_URL: "https://aur.archlinux.org"

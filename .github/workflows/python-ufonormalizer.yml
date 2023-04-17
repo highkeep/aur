@@ -1,4 +1,4 @@
-name: python-ufonormalizer-dep
+name: _python-ufonormalizer
 
 env:
   REPO_URL: "https://aur.archlinux.org"

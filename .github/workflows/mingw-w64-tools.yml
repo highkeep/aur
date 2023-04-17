@@ -1,4 +1,4 @@
-name: mingw-w64-tools-dep
+name: _mingw-w64-tools
 
 env:
   REPO_URL: "https://aur.archlinux.org"

@@ -1,4 +1,4 @@
-name: lib32-lzo-dep
+name: _lib32-lzo
 
 env:
   REPO_URL: "https://github.com/loathingKernel/PKGBUILDs.git"
