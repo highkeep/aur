@@ -1,0 +1,20 @@
+name: proton-experimental-flow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  flow:
+    steps:
+    - name: Run psautohint
+      uses: highkeep/aur/.github/workflows/psautohint.yml@main
+    - name: Run python-ufoprocessor
+      uses: highkeep/aur/.github/workflows/python-ufoprocessor.yml@main
+    - name: Run afdko
+      uses: highkeep/aur/.github/workflows/afdko.yml@main
+    - name: Run mingw-w64-tools
+      uses: highkeep/aur/.github/workflows/mingw-w64-tools.yml@main
+    - name: Run lib32-lzo
+      uses: highkeep/aur/.github/workflows/lib32-lzo.yml@main
+    - name: Run proton-experimental
+      uses: highkeep/aur/.github/workflows/proton-experimental.yml@main
