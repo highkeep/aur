@@ -41,7 +41,7 @@ on:
         default: $GITHUB_REF_NAME
 
 jobs:
-  arch:
+  architecture:
     runs-on: ubuntu-latest
     outputs:
       build_arch: ${{ steps.get_arch.outputs.build_arch }}
