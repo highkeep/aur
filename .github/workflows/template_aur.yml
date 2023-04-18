@@ -60,9 +60,8 @@ jobs:
               exit 1
               ;;
           esac
-  check:
+  sanity:
     runs-on: ubuntu-latest
-    needs: arch
     outputs:
       status: ${{ steps.update.outputs.update }}
     steps:
@@ -76,8 +75,8 @@ jobs:
         source functions.sh && echo $(checkGitVersion ${{ inputs.repo_url }} ${{ inputs.repo_pkg }}) >> $GITHUB_OUTPUT
   package: 
     runs-on: ubuntu-latest
-    needs: [arch,check]
-    if: ${{ needs.check.outputs.status == 'true' }}
+    needs: [architecture,sanity]
+    if: ${{ needs.sanity.outputs.status == 'true' }}
     steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -86,20 +85,20 @@ jobs:
     - name: Clone Package
       run: |
         git clone ${{ inputs.repo_url }}/${{ inputs.repo_pkg }}.git
-    - name: Swap in ${{ needs.arch.outputs.build_arch }}
+    - name: Swap in ${{ needs.architecture.outputs.build_arch }}
       run: |
-        sed -i 's/=nocona/=${{ needs.arch.outputs.build_arch }}/g;s/=core-avx2/=${{ needs.arch.outputs.build_arch }}/g' ${{ inputs.repo_pkg }}/PKGBUILD
+        sed -i 's/=nocona/=${{ needs.architecture.outputs.build_arch }}/g;s/=core-avx2/=${{ needs.architecture.outputs.build_arch }}/g' ${{ inputs.repo_pkg }}/PKGBUILD
     - name: Makepkg Build and Check
       id: makepkg
       uses: highkeep/pkgbuild-action@master
       with:
         pkgdir: ${{ inputs.repo_pkg }}
-        pacmanConf: "configs/${{ needs.arch.outputs.build_arch }}_pacman.conf"
-        makepkgConf: "configs/${{ needs.arch.outputs.build_arch }}_makepkg.conf"
+        pacmanConf: "configs/${{ needs.architecture.outputs.build_arch }}_pacman.conf"
+        makepkgConf: "configs/${{ needs.architecture.outputs.build_arch }}_makepkg.conf"
         makepkgArgs: ${{ inputs.makepkgArgs }}
         multilib: ${{ inputs.multilib }}
         nvidiaUtils: ${{ inputs.nvidiaUtils }}
-        repoReleaseTag: "${{ needs.arch.outputs.build_arch }}"
+        repoReleaseTag: "${{ needs.architecture.outputs.build_arch }}"
     - name: Print Package Files
       run: |
         echo "Successfully created the following package archive"
@@ -111,31 +110,31 @@ jobs:
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: ${{ needs.arch.outputs.build_arch }}
+        tag: ${{ needs.architecture.outputs.build_arch }}
         file: ${{ steps.makepkg.outputs.pkgfile0 }}
         overwrite: true
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: ${{ needs.arch.outputs.build_arch }}
+        tag: ${{ needs.architecture.outputs.build_arch }}
         file: ${{ steps.makepkg.outputs.repofile0 }}
         overwrite: true
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: ${{ needs.arch.outputs.build_arch }}
+        tag: ${{ needs.architecture.outputs.build_arch }}
         file: ${{ steps.makepkg.outputs.repofile1 }}
         overwrite: true
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: ${{ needs.arch.outputs.build_arch }}
+        tag: ${{ needs.architecture.outputs.build_arch }}
         file: ${{ steps.makepkg.outputs.repofile2 }}
         overwrite: true
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: ${{ needs.arch.outputs.build_arch }}
+        tag: ${{ needs.architecture.outputs.build_arch }}
         file: ${{ steps.makepkg.outputs.repofile3 }}
         overwrite: true
     - name: Ignore package folder
