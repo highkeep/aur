@@ -5,10 +5,13 @@ on:
     inputs:
     REPO_URL:
       required: true
+      type: string
     REPO_PKG:
       required: true
+      type: string
     ARCH:
       required: true
+      type: string
   workflow_dispatch:
     inputs:
       REPO_URL:
