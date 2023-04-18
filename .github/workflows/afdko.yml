@@ -6,7 +6,7 @@ on:
 
 jobs:
   process:
-    uses: highkeep/aur/.github/workflows/template_aur.yml
+    uses: highkeep/aur/.github/workflows/template_aur.yml@main
     with:
       repo_url: https://aur.archlinux.org
       repo_pkg: afdko
