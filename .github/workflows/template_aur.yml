@@ -2,6 +2,11 @@ name: template_aur
 
 on:
   workflow_call:
+  workflow_dispatch:
+    inputs:
+      REPO_URL:
+      REPO_PKG:
+      ARCH:
 
 jobs:
   check:
