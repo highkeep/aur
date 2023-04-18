@@ -2,6 +2,13 @@ name: template_aur
 
 on:
   workflow_call:
+    inputs:
+    REPO_URL:
+      required: true
+    REPO_PKG:
+      required: true
+    ARCH:
+      required: true
   workflow_dispatch:
     inputs:
       REPO_URL:
