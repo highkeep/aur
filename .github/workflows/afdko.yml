@@ -2,6 +2,10 @@ name: _afdko
 
 on:
   workflow_call:
+    inputs:
+      ref:
+        type: string
+        default: $GITHUB_REF_NAME
   workflow_dispatch:
 
 jobs:

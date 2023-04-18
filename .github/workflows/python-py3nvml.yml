@@ -5,7 +5,7 @@ on:
     inputs:
       ref:
         type: string
-        default: main
+        default: $GITHUB_REF_NAME
   workflow_dispatch:
 
 jobs:
