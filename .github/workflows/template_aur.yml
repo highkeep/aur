@@ -12,10 +12,10 @@ on:
       build_arch:
         type: string
       multilib:
-        type: bool
+        type: boolean
         default: false
       nvidiaUtils:
-        type: bool
+        type: boolean
         default: false
   workflow_dispatch:
     inputs:
@@ -28,8 +28,10 @@ on:
       build_arch:
         type: string
       multilib:
+        type: boolean
         default: false
       nvidiaUtils:
+        type: boolean
         default: false
 
 env:
