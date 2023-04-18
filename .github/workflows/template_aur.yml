@@ -12,8 +12,10 @@ on:
       build_arch:
         type: string
       multilib:
+        type: bool
         default: false
       nvidiaUtils:
+        type: bool
         default: false
   workflow_dispatch:
     inputs:
