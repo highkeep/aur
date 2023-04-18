@@ -3,7 +3,7 @@ name: flow_gwe
 on:
   workflow_dispatch:
   schedule:
-    - cron: '30 * * * *'
+    - cron: '*/15 * * * *'
       branches:
         - main
         - generic
