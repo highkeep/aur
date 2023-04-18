@@ -4,9 +4,12 @@ on:
   workflow_call:
   workflow_dispatch:
 
+env:
+  template: highkeep/aur/.github/workflows/template_aur.yml@${{ github.ref_name }}
+
 jobs:
   process:
-    uses: highkeep/aur/.github/workflows/template_aur.yml@${{ github.ref_name }}
+    uses: ${{ env.template }}
     with:
       repo_url: https://aur.archlinux.org
       repo_pkg: afdko
