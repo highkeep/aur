@@ -9,7 +9,7 @@ jobs:
     steps:
     - name: echo
       run: |
-        echo ${{ vars.REPO_URL }} ${{ vars.REPO_PKG }} ${{ vars.ARCH }}
+        echo ${{ env.REPO_URL }} ${{ env.REPO_PKG }} ${{ env.ARCH }}
   # check:
   #   runs-on: ubuntu-latest
   #   outputs:
