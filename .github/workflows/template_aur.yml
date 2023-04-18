@@ -1,7 +1,7 @@
 name: template_aur
 
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
       repo_url:
         required: true
