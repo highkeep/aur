@@ -11,6 +11,10 @@ on:
         type: string
       build_arch:
         type: string
+      multilib:
+        default: false
+      nvidiaUtils:
+        default: false
   workflow_dispatch:
     inputs:
       repo_url:
