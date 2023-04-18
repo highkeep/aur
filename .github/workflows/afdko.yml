@@ -6,15 +6,7 @@ on:
 
 jobs:
   process:
-    if: ${{ github.ref_name == 'main'}} 
     uses: highkeep/aur/.github/workflows/template_aur.yml@${{ github.ref_name }}
     with:
       repo_url: https://aur.archlinux.org
       repo_pkg: afdko
-      build_arch: alderlake
-    if: ${{ github.ref_name == 'generic'}} 
-    uses: highkeep/aur/.github/workflows/template_aur.yml@${{ github.ref_name }}
-    with:
-      repo_url: https://aur.archlinux.org
-      repo_pkg: afdko
-      build_arch: generic_x86_64
