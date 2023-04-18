@@ -1,17 +1,6 @@
 name: template_aur
 
 on:
-  workflow_call:
-    inputs:
-      repo_url:
-        required: true
-        type: string
-      repo_pkg:
-        required: true
-        type: string
-      build_arch:
-        required: true
-        type: string
   workflow_dispatch:
     inputs:
       repo_url:
