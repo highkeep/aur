@@ -11,9 +11,13 @@ on:
         type: string
       build_arch:
         type: string
+      makepkgArgs:
+        type: string
       multilib:
+        type: boolean
         default: false
       nvidiaUtils:
+        type: boolean
         default: false
   workflow_dispatch:
     inputs:
@@ -25,9 +29,13 @@ on:
         type: string
       build_arch:
         type: string
+      makepkgArgs:
+        type: string
       multilib:
+        type: boolean
         default: false
       nvidiaUtils:
+        type: boolean
         default: false
 
 env:
@@ -92,6 +100,9 @@ jobs:
         pkgdir: ${{ inputs.repo_pkg }}
         pacmanConf: "configs/${{ needs.arch.outputs.build_arch }}_pacman.conf"
         makepkgConf: "configs/${{ needs.arch.outputs.build_arch }}_makepkg.conf"
+        makepkgArgs: ${{ inputs.makepkgArgs }}
+        multilib: ${{ inputs.multilib }}
+        nvidiaUtils: ${{ inputs.nvidiaUtils }}
         repoReleaseTag: "${{ needs.arch.outputs.build_arch }}"
     - name: Print Package Files
       run: |

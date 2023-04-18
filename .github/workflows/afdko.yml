@@ -10,4 +10,3 @@ jobs:
     with:
       repo_url: https://aur.archlinux.org
       repo_pkg: afdko
-      nvidiaUtils: true
