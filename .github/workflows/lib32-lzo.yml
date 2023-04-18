@@ -1,100 +1,12 @@
-name: _lib32-lzo
-
-env:
-  REPO_URL: "https://github.com/loathingKernel/PKGBUILDs.git"
-  REPO_PKG: lib32-lzo
-  ARCH: alderlake
+name: _lib32_lzo
 
 on:
   workflow_call:
+  workflow_dispatch:
 
 jobs:
-  check:
-    runs-on: ubuntu-latest
-    outputs:
-      status: ${{ steps.update.outputs.update }}
-      sum: ${{ steps.update.outputs.sum }}
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-    - name: Clone Package
-      run: |
-        source functions.sh && git-svn ${{ env.REPO_URL }} aur/${{ env.REPO_PKG }}
-    - name: Compare Package
-      id: update
-      run: |
-        source functions.sh && echo "sum=$(genLocalSum ${{ env.REPO_PKG }})" >> $GITHUB_OUTPUT
-        source functions.sh && echo $(checkLocalVersion ${{ env.REPO_PKG }}) >> $GITHUB_OUTPUT
-  package: 
-    runs-on: ubuntu-latest
-    needs: check
-    if: ${{ needs.check.outputs.status == 'true' }}
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-    - name: Clone Package
-      run: |
-        source functions.sh && git-svn ${{ env.REPO_URL }} aur/${{ env.REPO_PKG }}
-    - name: Swap in ${{ env.ARCH }}
-      run: |
-        sed -i 's/=nocona/=${{ env.ARCH }}/g;s/=core-avx2/=${{ env.ARCH }}/g' ${{ env.REPO_PKG }}/PKGBUILD
-    - name: Makepkg Build and Check
-      id: makepkg
-      uses: highkeep/pkgbuild-action@master
-      with:
-        pkgdir: ${{ env.REPO_PKG }}
-        pacmanConf: "configs/${{ env.ARCH }}_pacman.conf"
-        makepkgConf: "configs/${{ env.ARCH }}_makepkg.conf"
-        multilib: true
-        repoReleaseTag: "${{ env.ARCH }}"
-    - name: Print Package Files
-      run: |
-        echo "Successfully created the following package archive"
-        echo "Package: ${{ steps.makepkg.outputs.pkgfile0 }}"
-        echo "Package: ${{ steps.makepkg.outputs.repofile0 }}"
-        echo "Package: ${{ steps.makepkg.outputs.repofile1 }}"
-        echo "Package: ${{ steps.makepkg.outputs.repofile2 }}"
-        echo "Package: ${{ steps.makepkg.outputs.repofile3 }}"
-    - uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: ${{ env.ARCH }}
-        file: ${{ steps.makepkg.outputs.pkgfile0 }}
-        overwrite: true
-    - uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: ${{ env.ARCH }}
-        file: ${{ steps.makepkg.outputs.repofile0 }}
-        overwrite: true
-    - uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: ${{ env.ARCH }}
-        file: ${{ steps.makepkg.outputs.repofile1 }}
-        overwrite: true
-    - uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: ${{ env.ARCH }}
-        file: ${{ steps.makepkg.outputs.repofile2 }}
-        overwrite: true
-    - uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: ${{ env.ARCH }}
-        file: ${{ steps.makepkg.outputs.repofile3 }}
-        overwrite: true
-    - name: Ignore package folder
-      run: | 
-        grep -w /${{ env.REPO_PKG }} .gitignore >/dev/null || echo /${{ env.REPO_PKG }} >> .gitignore
-    - name: Update version
-      run: |
-        [ -f versions/${{ env.REPO_PKG }} ] || touch versions/${{ env.REPO_PKG }} && git add versions/${{ env.REPO_PKG }}
-        echo ${{ needs.check.outputs.sum }} > versions/${{ env.REPO_PKG }}
-    - name: Commit changes
-      run: |
-        git config --global user.name 'Nick Marshall'
-        git config --global user.email 'highkeep@users.noreply.github.com'
-        git commit -am "Version control"
-        git push
+  process:
+    uses: highkeep/aur/.github/workflows/template_svn.yml@main
+    with:
+      repo_url: https://github.com/loathingKernel/PKGBUILDs.git
+      repo_pkg: lib32-lzo
