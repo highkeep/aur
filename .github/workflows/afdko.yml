@@ -11,7 +11,7 @@ on:
 
 jobs:
   process:
-    uses: highkeep/aur/.github/workflows/template_aur.yml@main
+    uses: ./.github/workflows/template_aur.yml@main
     with:
       env_vars: |
         REPO_URL=${{ env.REPO_URL }}
