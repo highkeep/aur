@@ -10,13 +10,21 @@ on:
   workflow_dispatch:
 
 jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps: [run: echo]
+    outputs:
+        REPO_URL: ${{ env.REPO_URL }}
+        REPO_PKG: ${{ env.REPO_PKG }}
+        ARCH: ${{ env.ARCH }}
+
   process:
+    needs: setup
     uses: highkeep/aur/.github/workflows/template_aur.yml@main
     with:
-      env_vars: |
-        REPO_URL=${{ env.REPO_URL }}
-        REPO_PKG=${{ env.REPO_PKG }}
-        ARCH=${{ env.ARCH }}
+      REPO_URL: ${{ needs.setup.outputs.REPO_URL }}
+      REPO_PKG: ${{ needs.setup.outputs.REPO_PKG }}
+      ARCH: ${{ needs.setup.outputs.ARCH }}
 
   # check:
   #   runs-on: ubuntu-latest
