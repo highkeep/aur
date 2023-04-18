@@ -9,7 +9,7 @@ jobs:
     steps:
     - name: echo
       run: |
-        echo ${{ vars }}
+        echo $REPO_URL $REPO_PKG $ARCH
   # check:
   #   runs-on: ubuntu-latest
   #   outputs:
