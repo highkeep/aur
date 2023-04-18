@@ -93,10 +93,11 @@ jobs:
       run: |
         git clone ${{ inputs.repo_url }}/${{ inputs.repo_pkg }}.git
     - name: Set PKGBUILD architecture 
-      if: ${{ needs.architecture.outputs.ref != 'generic '}}
       run: |
-        echo "I RAN!"
-        sed -i 's/=nocona/=${{ needs.architecture.outputs.build_arch }}/g;s/=core-avx3/=${{ needs.architecture.outputs.build_arch }}/g' ${{ inputs.repo_pkg }}/PKGBUILD
+        if [[ ${{ needs.architecture.outputs.ref }} != 'generic' ]]; then
+          echo "I RAN!"
+          sed -i 's/=nocona/=${{ needs.architecture.outputs.build_arch }}/g;s/=core-avx3/=${{ needs.architecture.outputs.build_arch }}/g' ${{ inputs.repo_pkg }}/PKGBUILD
+        fi
     - name: Makepkg Build and Check
       id: makepkg
       uses: highkeep/pkgbuild-action@master
