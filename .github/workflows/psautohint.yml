@@ -2,6 +2,7 @@ name: _psautohint
 
 on:
   workflow_call:
+  workflow_dispatch:
 
 jobs:
   process:

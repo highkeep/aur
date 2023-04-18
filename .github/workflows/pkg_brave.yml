@@ -1,10 +1,5 @@
 name: pkg_brave
 
-env:
-  REPO_URL: "https://aur.archlinux.org"
-  REPO_PKG: brave
-  ARCH: alderlake
-
 on:
   workflow_call:
   workflow_dispatch:
