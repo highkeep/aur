@@ -3,6 +3,7 @@ name: _afdko
 env:
   REPO_URL: "https://aur.archlinux.org"
   REPO_PKG: afdko
+  ARCH: generic_x86_64
 
 on:
   workflow_call:
