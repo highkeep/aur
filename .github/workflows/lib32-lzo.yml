@@ -3,6 +3,7 @@ name: _lib32-lzo
 env:
   REPO_URL: "https://github.com/loathingKernel/PKGBUILDs.git"
   REPO_PKG: lib32-lzo
+  ARCH: alderlake
 
 on:
   workflow_call:
@@ -34,18 +35,18 @@ jobs:
     - name: Clone Package
       run: |
         source functions.sh && git-svn ${{ env.REPO_URL }} aur/${{ env.REPO_PKG }}
-    - name: Swap in alderlake
+    - name: Swap in ${{ env.ARCH }}
       run: |
-        sed -i 's/=nocona/=alderlake/g;s/=core-avx2/=alderlake/g' ${{ env.REPO_PKG }}/PKGBUILD
+        sed -i 's/=nocona/=${{ env.ARCH }}/g;s/=core-avx2/=${{ env.ARCH }}/g' ${{ env.REPO_PKG }}/PKGBUILD
     - name: Makepkg Build and Check
       id: makepkg
       uses: highkeep/pkgbuild-action@master
       with:
         pkgdir: ${{ env.REPO_PKG }}
-        pacmanConf: "configs/alderlake_pacman.conf"
-        makepkgConf: "configs/alderlake_makepkg.conf"
+        pacmanConf: "configs/${{ env.ARCH }}_pacman.conf"
+        makepkgConf: "configs/${{ env.ARCH }}_makepkg.conf"
         multilib: true
-        repoReleaseTag: "alderlake"
+        repoReleaseTag: "${{ env.ARCH }}"
     - name: Print Package Files
       run: |
         echo "Successfully created the following package archive"
@@ -57,31 +58,31 @@ jobs:
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: alderlake
+        tag: ${{ env.ARCH }}
         file: ${{ steps.makepkg.outputs.pkgfile0 }}
         overwrite: true
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: alderlake
+        tag: ${{ env.ARCH }}
         file: ${{ steps.makepkg.outputs.repofile0 }}
         overwrite: true
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: alderlake
+        tag: ${{ env.ARCH }}
         file: ${{ steps.makepkg.outputs.repofile1 }}
         overwrite: true
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: alderlake
+        tag: ${{ env.ARCH }}
         file: ${{ steps.makepkg.outputs.repofile2 }}
         overwrite: true
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: alderlake
+        tag: ${{ env.ARCH }}
         file: ${{ steps.makepkg.outputs.repofile3 }}
         overwrite: true
     - name: Ignore package folder

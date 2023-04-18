@@ -3,6 +3,7 @@ name: _gwe
 env:
   REPO_URL: "https://aur.archlinux.org"
   REPO_PKG: gwe
+  ARCH: alderlake
 
 on:
   workflow_call:
@@ -34,10 +35,10 @@ jobs:
       uses: highkeep/pkgbuild-action@master
       with:
         pkgdir: ${{ env.REPO_PKG }}
-        pacmanConf: "configs/alderlake_pacman.conf"
-        makepkgConf: "configs/alderlake_makepkg.conf"
+        pacmanConf: "configs/${{ env.ARCH }}_pacman.conf"
+        makepkgConf: "configs/${{ env.ARCH }}_makepkg.conf"
         nvidiaUtils: true
-        repoReleaseTag: "alderlake"
+        repoReleaseTag: "${{ env.ARCH }}"
     - name: Print Package Files
       run: |
         echo "Successfully created the following package archive"
@@ -49,31 +50,31 @@ jobs:
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: alderlake
+        tag: ${{ env.ARCH }}
         file: ${{ steps.makepkg.outputs.pkgfile0 }}
         overwrite: true
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: alderlake
+        tag: ${{ env.ARCH }}
         file: ${{ steps.makepkg.outputs.repofile0 }}
         overwrite: true
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: alderlake
+        tag: ${{ env.ARCH }}
         file: ${{ steps.makepkg.outputs.repofile1 }}
         overwrite: true
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: alderlake
+        tag: ${{ env.ARCH }}
         file: ${{ steps.makepkg.outputs.repofile2 }}
         overwrite: true
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: alderlake
+        tag: ${{ env.ARCH }}
         file: ${{ steps.makepkg.outputs.repofile3 }}
         overwrite: true
     - name: Ignore package folder
