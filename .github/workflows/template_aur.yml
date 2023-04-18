@@ -10,7 +10,6 @@ on:
         required: true
         type: string
       build_arch:
-        required: true
         type: string
   workflow_dispatch:
     inputs:
@@ -21,12 +20,40 @@ on:
         required: true
         type: string
       build_arch:
-        required: true
         type: string
 
+env:
+  build_arch:
+
 jobs:
+  arch:
+    runs-on: ubuntu-latest
+    outputs:
+      build_arch: ${{ steps.get_arch.outputs.build_arch }}
+    steps:
+      - name: Get Arch
+        id: get_arch
+        run: |
+          input=${{ github.event.inputs.build_arch }}
+
+          if [ ! -z ${input} ]; then
+            echo "build_arch=${input} }}" >> $GITHUB_OUTPUT
+          else
+            case ${{ github.ref_name }} in
+              main)
+                echo "build_arch=alderlake" >> $GITHUB_OUTPUT
+                ;;
+              generic)
+                echo "build_arch=generic_x86_64" >> $GITHUB_OUTPUT
+                ;;
+              *)
+                exit 1
+                ;;
+            esac
+          fi
   check:
     runs-on: ubuntu-latest
+    needs: arch
     outputs:
       status: ${{ steps.update.outputs.update }}
     steps:
@@ -46,17 +73,17 @@ jobs:
     - name: Clone Package
       run: |
         git clone ${{ inputs.repo_url }}/${{ inputs.repo_pkg }}.git
-    - name: Swap in ${{ inputs.build_arch }}
+    - name: Swap in ${{ needs.arch.outputs.build_arch }}
       run: |
-        sed -i 's/=nocona/=${{ inputs.build_arch }}/g;s/=core-avx2/=${{ inputs.build_arch }}/g' ${{ inputs.repo_pkg }}/PKGBUILD
+        sed -i 's/=nocona/=${{ needs.arch.outputs.build_arch }}/g;s/=core-avx2/=${{ needs.arch.outputs.build_arch }}/g' ${{ inputs.repo_pkg }}/PKGBUILD
     - name: Makepkg Build and Check
       id: makepkg
       uses: highkeep/pkgbuild-action@master
       with:
         pkgdir: ${{ inputs.repo_pkg }}
-        pacmanConf: "configs/${{ inputs.build_arch }}_pacman.conf"
-        makepkgConf: "configs/${{ inputs.build_arch }}_makepkg.conf"
-        repoReleaseTag: "${{ inputs.build_arch }}"
+        pacmanConf: "configs/${{ needs.arch.outputs.build_arch }}_pacman.conf"
+        makepkgConf: "configs/${{ needs.arch.outputs.build_arch }}_makepkg.conf"
+        repoReleaseTag: "${{ needs.arch.outputs.build_arch }}"
     - name: Print Package Files
       run: |
         echo "Successfully created the following package archive"
@@ -68,31 +95,31 @@ jobs:
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: ${{ inputs.build_arch }}
+        tag: ${{ needs.arch.outputs.build_arch }}
         file: ${{ steps.makepkg.outputs.pkgfile0 }}
         overwrite: true
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: ${{ inputs.build_arch }}
+        tag: ${{ needs.arch.outputs.build_arch }}
         file: ${{ steps.makepkg.outputs.repofile0 }}
         overwrite: true
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: ${{ inputs.build_arch }}
+        tag: ${{ needs.arch.outputs.build_arch }}
         file: ${{ steps.makepkg.outputs.repofile1 }}
         overwrite: true
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: ${{ inputs.build_arch }}
+        tag: ${{ needs.arch.outputs.build_arch }}
         file: ${{ steps.makepkg.outputs.repofile2 }}
         overwrite: true
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
-        tag: ${{ inputs.build_arch }}
+        tag: ${{ needs.arch.outputs.build_arch }}
         file: ${{ steps.makepkg.outputs.repofile3 }}
         overwrite: true
     - name: Ignore package folder
