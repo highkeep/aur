@@ -76,7 +76,7 @@ jobs:
         source functions.sh && echo $(checkGitVersion ${{ inputs.repo_url }} ${{ inputs.repo_pkg }}) >> $GITHUB_OUTPUT
   package: 
     runs-on: ubuntu-latest
-    needs: check
+    needs: [arch,check]
     if: ${{ needs.check.outputs.status == 'true' }}
     steps:
     - name: Checkout
