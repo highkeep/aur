@@ -1,0 +1,16 @@
+name: flow_wine-ge-custom
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */6 * * *'
+
+jobs:
+  main_wine-ge-custom:
+    name: Run wine-ge-custom
+    uses: highkeep/aur/.github/workflows/wine-ge-custom.yml@main
+  generic_wine-ge-custom:
+    name: Run wine-ge-custom
+    uses: highkeep/aur/.github/workflows/wine-ge-custom.yml@main
+    with:
+      ref: generic
