@@ -6,26 +6,61 @@ on:
     - cron: '0 */6 * * *'
 
 jobs:
-  psautohint:
+  main_psautohint:
     name: Run psautohint
     uses: highkeep/aur/.github/workflows/psautohint.yml@main
-  python-ufonormalizer:
+  generic_psautohint:
+    name: Run psautohint
+    uses: highkeep/aur/.github/workflows/psautohint.yml@main
+    with:
+      ref: generic
+  main_python-ufonormalizer:
     name: Run python-ufonormalizer
-    needs: psautohint
+    needs: main_psautohint
     uses: highkeep/aur/.github/workflows/python-ufonormalizer.yml@main
-  afdko:
+  generic_python-ufonormalizer:
+    name: Run python-ufonormalizer
+    needs: generic_psautohint
+    uses: highkeep/aur/.github/workflows/python-ufonormalizer.yml@main
+    with:
+      ref: generic
+  main_afdko:
     name: Run afdko
-    needs: python-ufonormalizer
+    needs: main_python-ufonormalizer
     uses: highkeep/aur/.github/workflows/afdko.yml@main
-  lib32-lzo:
+  generic_afdko:
+    name: Run afdko
+    needs: generic_python-ufonormalizer
+    uses: highkeep/aur/.github/workflows/afdko.yml@main
+    with:
+      ref: generic
+  main_lib32-lzo:
     name: Run lib32-lzo
-    needs: afdko
+    needs: main_afdko
     uses: highkeep/aur/.github/workflows/lib32-lzo.yml@main
-  mingw-w64-tools:
+  generic_lib32-lzo:
+    name: Run lib32-lzo
+    needs: generic_afdko
+    uses: highkeep/aur/.github/workflows/lib32-lzo.yml@main
+    with:
+      ref: generic
+  main_mingw-w64-tools:
     name: Run mingw-w64-tools
-    needs: lib32-lzo
+    needs: main_lib32-lzo
     uses: highkeep/aur/.github/workflows/mingw-w64-tools.yml@main
-  proton-experimental:
+  generic_mingw-w64-tools:
+    name: Run mingw-w64-tools
+    needs: generic_lib32-lzo
+    uses: highkeep/aur/.github/workflows/mingw-w64-tools.yml@main
+    with:
+      ref: generic
+  main_proton-experimental:
     name: Run proton-experimental
-    needs: [afdko,lib32-lzo,mingw-w64-tools]
+    needs: [main_afdko,main_lib32-lzo,main_mingw-w64-tools]
     uses: highkeep/aur/.github/workflows/proton-experimental.yml@main
+  generic_proton-experimental:
+    name: Run proton-experimental
+    needs: [generic_afdko,generic_lib32-lzo,generic_mingw-w64-tools]
+    uses: highkeep/aur/.github/workflows/proton-experimental.yml@main
+    with:
+      ref: generic
