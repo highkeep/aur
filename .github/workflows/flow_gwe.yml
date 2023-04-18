@@ -12,7 +12,7 @@ jobs:
     uses: highkeep/aur/.github/workflows/python-py3nvml.yml@main
   generic_python-py3nvml:
     name: Run python-py3nvml
-    uses: highkeep/aur/.github/workflows/python-py3nvml.yml@generic
+    uses: highkeep/aur/.github/workflows/python-py3nvml.yml@main
   main_python-injector:
     name: Run python-injector
     needs: main_python-py3nvml
@@ -20,7 +20,7 @@ jobs:
   generic_python-injector:
     name: Run python-injector
     needs: generic_python-py3nvml
-    uses: highkeep/aur/.github/workflows/python-injector.yml@generic
+    uses: highkeep/aur/.github/workflows/python-injector.yml@main
   main_gwe:
     name: Run gwe
     needs: [main_python-py3nvml,main_python-injector]
@@ -28,4 +28,4 @@ jobs:
   generic_gwe:
     name: Run gwe
     needs: [generic_python-py3nvml,generic_python-injector]
-    uses: highkeep/aur/.github/workflows/gwe.yml@generic
+    uses: highkeep/aur/.github/workflows/gwe.yml@main

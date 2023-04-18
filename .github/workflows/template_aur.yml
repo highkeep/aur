@@ -19,6 +19,9 @@ on:
       nvidiaUtils:
         type: boolean
         default: false
+      ref:
+        type: string
+        default: main
   workflow_dispatch:
     inputs:
       repo_url:
@@ -52,7 +55,7 @@ jobs:
           if [ ! -z ${input} ]; then
             echo "build_arch=${input} }}" >> $GITHUB_OUTPUT
           else
-            case ${{ github.ref_name }} in
+            case ${{ inputs.ref }} in
               main)
                 echo "build_arch=alderlake" >> $GITHUB_OUTPUT
                 ;;
@@ -72,6 +75,8 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3
+      with:
+        ref: ${{ inputs.ref }}
     - name: Compare Package
       id: update
       run: |
@@ -83,6 +88,8 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3
+      with:
+        ref: ${{ inputs.ref }}
     - name: Clone Package
       run: |
         git clone ${{ inputs.repo_url }}/${{ inputs.repo_pkg }}.git
