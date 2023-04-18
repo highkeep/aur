@@ -7,29 +7,29 @@ on:
 
 jobs:
   main_python-py3nvml:
-    name: Run python-py3nvml
+    name: Run python-py3nvml using alderlake
     uses: highkeep/aur/.github/workflows/python-py3nvml.yml@main
   generic_python-py3nvml:
-    name: Run python-py3nvml
+    name: Run python-py3nvml using generic_x86_64
     uses: highkeep/aur/.github/workflows/python-py3nvml.yml@main
     with:
       ref: generic
   main_python-injector:
-    name: Run python-injector
+    name: Run python-injector using alderlake
     needs: main_python-py3nvml
     uses: highkeep/aur/.github/workflows/python-injector.yml@main
   generic_python-injector:
-    name: Run python-injector
+    name: Run python-injector using generic_x86_64
     needs: generic_python-py3nvml
     uses: highkeep/aur/.github/workflows/python-injector.yml@main
     with:
       ref: generic
   main_gwe:
-    name: Run gwe
+    name: Run gwe using alderlake
     needs: [main_python-py3nvml,main_python-injector]
     uses: highkeep/aur/.github/workflows/gwe.yml@main
   generic_gwe:
-    name: Run gwe
+    name: Run gwe using generic_x86_64
     needs: [generic_python-py3nvml,generic_python-injector]
     uses: highkeep/aur/.github/workflows/gwe.yml@main
     with:
