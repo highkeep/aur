@@ -1,0 +1,12 @@
+name: _afdko
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+jobs:
+  process:
+    uses: highkeep/aur/.github/workflows/template_aur.yml@main
+    with:
+      repo_url: https://aur.archlinux.org
+      repo_pkg: afdko

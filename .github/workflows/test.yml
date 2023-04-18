@@ -1,0 +1,15 @@
+name: tester
+
+on:
+  workflow_dispatch
+
+jobs:
+  tester:
+    runs-on: ubuntu-latest
+    steps:
+      - if: ${{ github.ref_name == 'main'}}
+        run: |
+          echo "using: alderlake"
+      - if: ${{ github.ref_name == 'generic'}}
+        run: |
+          echo "using: generic_x86_64"
