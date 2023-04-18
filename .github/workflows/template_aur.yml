@@ -30,7 +30,9 @@ jobs:
     steps:
     - name: echo
       run: |
-        echo "${{ github.event.inputs.repo_url }} ${{ github.event.inputs.repo_pkg }} ${{ github.event.inputs.build_arch }}"
+        echo "url: ${{ github.event.inputs.repo_url }}"
+        echo "pkg: ${{ github.event.inputs.repo_pkg }}"
+        echo "arch: ${{ github.event.inputs.build_arch }}"
   # check:
   #   runs-on: ubuntu-latest
   #   outputs:
