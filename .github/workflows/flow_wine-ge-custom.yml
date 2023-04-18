@@ -7,10 +7,10 @@ on:
 
 jobs:
   main_wine-ge-custom:
-    name: Run wine-ge-custom
+    name: Run wine-ge-custom using alderlake
     uses: highkeep/aur/.github/workflows/wine-ge-custom.yml@main
   generic_wine-ge-custom:
-    name: Run wine-ge-custom
+    name: Run wine-ge-custom using generic_x86_64
     uses: highkeep/aur/.github/workflows/wine-ge-custom.yml@main
     with:
       ref: generic
