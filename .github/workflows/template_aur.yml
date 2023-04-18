@@ -6,8 +6,10 @@ on:
 jobs:
   check:
     runs-on: ubuntu-latest
-    run: |
-      echo ${{ vars }}
+    steps:
+    - name: echo
+      run: |
+        echo ${{ vars }}
   # check:
   #   runs-on: ubuntu-latest
   #   outputs:
