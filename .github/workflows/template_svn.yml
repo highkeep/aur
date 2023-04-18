@@ -93,9 +93,9 @@ jobs:
     - name: Clone Package
       run: |
         source functions.sh && git-svn ${{ inputs.repo_url }} aur/${{ inputs.repo_pkg }}
-    - name: Swap in ${{ needs.architecture.outputs.build_arch }}
+    - name: Set PKGBUILD architecture 
       run: |
-        sed -i 's/=nocona/=${{ needs.architecture.outputs.build_arch }}/g;s/=core-avx3/=${{ needs.architecture.outputs.build_arch }}/g' ${{ inputs.repo_pkg }}/PKGBUILD
+        [[ ${{ needs.architecture.output.ref }} != 'generic' ]] && sed -i 's/=nocona/=${{ needs.architecture.outputs.build_arch }}/g;s/=core-avx3/=${{ needs.architecture.outputs.build_arch }}/g' ${{ inputs.repo_pkg }}/PKGBUILD
     - name: Makepkg Build and Check
       id: makepkg
       uses: highkeep/pkgbuild-action@master
