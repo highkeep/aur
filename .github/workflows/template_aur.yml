@@ -19,7 +19,7 @@ on:
         default: false
       ref:
         type: string
-        default: $GITHUB_REF_NAME
+        default: main
   workflow_dispatch:
     inputs:
       repo_url:
@@ -38,7 +38,7 @@ on:
         default: false
       ref:
         type: string
-        default: $GITHUB_REF_NAME
+        default: main
 
 jobs:
   architecture:
