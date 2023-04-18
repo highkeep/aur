@@ -25,6 +25,10 @@ on:
         type: string
       build_arch:
         type: string
+      multilib:
+        default: false
+      nvidiaUtils:
+        default: false
 
 env:
   build_arch:
@@ -61,7 +65,7 @@ jobs:
     steps:
     - name: echo
       run: |
-        echo "${{ inputs.repo_url }} ${{ inputs.repo_pkg }} ${{ needs.arch.outputs.build_arch }}"
+        echo "${{ inputs.repo_url }} ${{ inputs.repo_pkg }} ${{ needs.arch.outputs.build_arch }} ${{ inputs.multilib }} ${{ inputs.nvidiaUtils }}"
         echo "${{ github.event.inputs.repo_url }} ${{ github.event.inputs.repo_pkg }} ${{ needs.arch.outputs.build_arch }}"
   #   outputs:
   #     status: ${{ steps.update.outputs.update }}
