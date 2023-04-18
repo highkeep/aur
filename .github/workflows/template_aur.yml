@@ -1,4 +1,4 @@
-name: aur_template
+name: template_aur
 
 on:
   workflow_call:

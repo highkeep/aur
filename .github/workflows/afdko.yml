@@ -10,7 +10,7 @@ on:
 
 jobs:
   process:
-    uses: highkeep/aur/.github/workflows/aur_template.yml@main
+    uses: highkeep/aur/.github/workflows/template_aur.yml@main
   # check:
   #   runs-on: ubuntu-latest
   #   outputs:
