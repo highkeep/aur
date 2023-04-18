@@ -1,12 +1,10 @@
 name: flow_gwe
 
 on:
+  push:
   workflow_dispatch:
   schedule:
-    - branches:
-        - main
-        - generic
-    - cron: '*/15 * * * *'
+    - cron: '0 0 */3 * *'
 
 jobs:
   python-py3nvml:
