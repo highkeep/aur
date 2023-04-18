@@ -8,9 +8,9 @@ jobs:
   process:
     uses: highkeep/aur/.github/workflows/template_aur.yml@main
     with:
-      REPO_URL: https://aur.archlinux.org
-      REPO_PKG: afdko
-      ARCH: alderlake
+      repo_url: https://aur.archlinux.org
+      repo_pkg: afdko
+      build_arch: alderlake
 
   # check:
   #   runs-on: ubuntu-latest

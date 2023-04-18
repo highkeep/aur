@@ -3,24 +3,24 @@ name: template_aur
 on:
   workflow_call:
     inputs:
-      REPO_URL:
+      repo_url:
         required: true
         type: string
-      REPO_PKG:
+      repo_pkg:
         required: true
         type: string
-      ARCH:
+      build_arch:
         required: true
         type: string
   workflow_dispatch:
     inputs:
-      REPO_URL:
+      repo_url:
         required: true
         type: string
-      REPO_PKG:
+      repo_pkg:
         required: true
         type: string
-      ARCH:
+      build_arch:
         required: true
         type: string
 
@@ -30,7 +30,7 @@ jobs:
     steps:
     - name: echo
       run: |
-        echo "${{ github.event.inputs.REPO_URL }} ${{ github.event.inputs.REPO_PKG }} ${{ github.event.inputs.ARCH }}"
+        echo "${{ github.event.inputs.repo_url }} ${{ github.event.inputs.repo_pkg }} ${{ github.event.inputs.build_arch }}"
   # check:
   #   runs-on: ubuntu-latest
   #   outputs:
