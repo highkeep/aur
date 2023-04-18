@@ -14,5 +14,6 @@ jobs:
   process:
     uses: highkeep/aur/.github/workflows/template_aur.yml@main
     with:
+      ref: ${{ inputs.ref }}
       repo_url: https://aur.archlinux.org
       repo_pkg: act

@@ -12,5 +12,6 @@ jobs:
   process:
     uses: highkeep/aur/.github/workflows/template_svn.yml@main
     with:
+      ref: ${{ inputs.ref }}
       repo_url: https://github.com/loathingKernel/PKGBUILDs.git
       repo_pkg: lib32-lzo
