@@ -14,7 +14,7 @@ jobs:
     steps:
     - name: echo
       run: |
-        echo ${{ env.REPO_URL }} ${{ env.REPO_PKG }} ${{ env.ARCH }}
+        echo ${{ github.event.inputs.REPO_URL }} ${{ env.github.event.inputs.REPO_PKG }} ${{ env.github.event.inputs.ARCH }}
   # check:
   #   runs-on: ubuntu-latest
   #   outputs:
