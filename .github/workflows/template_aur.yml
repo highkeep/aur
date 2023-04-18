@@ -51,7 +51,7 @@ jobs:
         id: get_ref
         run: |
           input_ref=${{ inputs.ref }}
-          echo "ref=${input_ref:-main}" >> $GITHUB_OUTPUT
+          echo "ref=${input_ref:-$GITHUB_REF_NAME}" >> $GITHUB_OUTPUT
       - name: Get Arch
         id: get_arch
         run: |
