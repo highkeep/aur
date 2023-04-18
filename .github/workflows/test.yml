@@ -7,6 +7,9 @@ jobs:
   tester:
     runs-on: ubuntu-latest
     steps:
-      - name: echo
+      - if: ${{ github.ref_name == 'main'}}
         run: |
-          echo "using: $GITHUB_BASE_REF"
+          echo "using: alderlake"
+      - if: ${{ github.ref_name == 'generic'}}
+        run: |
+          echo "using: generic_x86_64"
