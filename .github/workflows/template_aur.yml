@@ -5,8 +5,11 @@ on:
   workflow_dispatch:
     inputs:
       REPO_URL:
+        required: true
       REPO_PKG:
+        required: true
       ARCH:
+        required: true
 
 jobs:
   check:
@@ -14,7 +17,7 @@ jobs:
     steps:
     - name: echo
       run: |
-        echo ${{ github.event.inputs.REPO_URL }} ${{ env.github.event.inputs.REPO_PKG }} ${{ env.github.event.inputs.ARCH }}
+        echo "${{ github.event.inputs.REPO_URL }} ${{ github.event.inputs.REPO_PKG }} ${{ github.event.inputs.ARCH }}"
   # check:
   #   runs-on: ubuntu-latest
   #   outputs:

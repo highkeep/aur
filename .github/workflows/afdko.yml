@@ -12,7 +12,7 @@ on:
 jobs:
   process:
     uses: highkeep/aur/.github/workflows/template_aur.yml@main
-    env:
+    with:
       REPO_URL: "https://aur.archlinux.org"
       REPO_PKG: afdko
       ARCH: alderlake
