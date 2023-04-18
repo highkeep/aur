@@ -1,15 +1,52 @@
 name: tester
 
 on:
-  workflow_dispatch
+  workflow_call:
+    inputs:
+      repo_url:
+        required: true
+        type: string
+      repo_pkg:
+        required: true
+        type: string
+      makepkgArgs:
+        type: string
+      multilib:
+        type: boolean
+        default: false
+      nvidiaUtils:
+        type: boolean
+        default: false
+      ref:
+        type: string
+        default: main
+  workflow_dispatch:
+    inputs:
+      repo_url:
+        type: string
+      repo_pkg:
+        type: string
+      makepkgArgs:
+        type: string
+      multilib:
+        type: boolean
+        default: false
+      nvidiaUtils:
+        type: boolean
+        default: false
+      ref:
+        type: string
+        default: main
 
 jobs:
   tester:
     runs-on: ubuntu-latest
     steps:
-      - if: ${{ github.ref_name == 'main'}}
+      - name: echo
         run: |
-          echo "using: alderlake"
-      - if: ${{ github.ref_name == 'generic'}}
-        run: |
-          echo "using: generic_x86_64"
+          echo ${{ github.event.inputs.repo_url }} ${{ inputs.repo_url }}
+          echo ${{ github.event.inputs.repo_pkg }} ${{ inputs.repo_pkg }}
+          echo ${{ github.event.inputs.makepkgArgs }} ${{ inputs.makepkgArgs }}
+          echo ${{ github.event.inputs.multilib }} ${{ inputs.multilib }}
+          echo ${{ github.event.inputs.nvidiaUtils }} ${{ inputs.nvidiaUtils }}
+          echo ${{ github.event.inputs.ref }} ${{ inputs.ref }}
