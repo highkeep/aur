@@ -75,7 +75,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
       with:
-        ref: ${{ needs.architecture.output.ref }}
+        ref: ${{ needs.architecture.outputs.ref }}
     - name: Compare Package
       id: update
       run: |
@@ -88,13 +88,13 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
       with:
-        ref: ${{ needs.architecture.output.ref }}
+        ref: ${{ needs.architecture.outputs.ref }}
     - name: Clone Package
       run: |
         git clone ${{ inputs.repo_url }}/${{ inputs.repo_pkg }}.git
     - name: Set PKGBUILD architecture 
       run: |
-        ref=${{ needs.architecture.output.ref }}
+        ref=${{ needs.architecture.outputs.ref }}
         echo ${ref}
         [[ "${ref}" != 'generic' ]] && sed -i 's/=nocona/=${{ needs.architecture.outputs.build_arch }}/g;s/=core-avx3/=${{ needs.architecture.outputs.build_arch }}/g' ${{ inputs.repo_pkg }}/PKGBUILD
     - name: Makepkg Build and Check
