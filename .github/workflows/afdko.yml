@@ -1,10 +1,5 @@
 name: _afdko
 
-env:
-  REPO_URL: "https://aur.archlinux.org"
-  REPO_PKG: afdko
-  ARCH: alderlake
-
 on:
   workflow_call:
   workflow_dispatch:
@@ -13,9 +8,9 @@ jobs:
   process:
     uses: highkeep/aur/.github/workflows/template_aur.yml@main
     with:
-      REPO_URL: ${{ env.REPO_URL }}
-      REPO_PKG: ${{ env.REPO_PKG }}
-      ARCH: ${{ env.ARCH }}
+      REPO_URL: "https://aur.archlinux.org"
+      REPO_PKG: afdko
+      ARCH: alderlake
 
   # check:
   #   runs-on: ubuntu-latest
