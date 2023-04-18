@@ -12,6 +12,17 @@ on:
       build_arch:
         required: true
         type: string
+  workflow_dispatch:
+    inputs:
+      repo_url:
+        required: true
+        type: string
+      repo_pkg:
+        required: true
+        type: string
+      build_arch:
+        required: true
+        type: string
 
 jobs:
   check:
@@ -19,9 +30,9 @@ jobs:
     steps:
     - name: echo
       run: |
-        echo "url: ${{ github.event.inputs.repo_url }}"
-        echo "pkg: ${{ github.event.inputs.repo_pkg }}"
-        echo "arch: ${{ github.event.inputs.build_arch }}"
+        echo "url: ${{ inputs.repo_url }}"
+        echo "pkg: ${{ inputs.repo_pkg }}"
+        echo "arch: ${{ inputs.build_arch }}"
   # check:
   #   runs-on: ubuntu-latest
   #   outputs:
