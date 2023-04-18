@@ -9,7 +9,24 @@ on:
       repo_pkg:
         required: true
         type: string
-      build_arch:
+      makepkgArgs:
+        type: string
+      multilib:
+        type: boolean
+        default: false
+      nvidiaUtils:
+        type: boolean
+        default: false
+      ref:
+        type: string
+        default: ${{ github.ref_name }}
+  workflow_dispatch:
+    inputs:
+      repo_url:
+        required: true
+        type: string
+      repo_pkg:
+        required: true
         type: string
       makepkgArgs:
         type: string
@@ -21,25 +38,7 @@ on:
         default: false
       ref:
         type: string
-        default: main
-  workflow_dispatch:
-    inputs:
-      repo_url:
-        required: true
-        type: string
-      repo_pkg:
-        required: true
-        type: string
-      build_arch:
-        type: string
-      makepkgArgs:
-        type: string
-      multilib:
-        type: boolean
-        default: false
-      nvidiaUtils:
-        type: boolean
-        default: false
+        default: ${{ github.ref_name }}
 
 jobs:
   arch:
@@ -50,23 +49,17 @@ jobs:
       - name: Get Arch
         id: get_arch
         run: |
-          input=${{ github.event.inputs.build_arch }}
-
-          if [ ! -z ${input} ]; then
-            echo "build_arch=${input} }}" >> $GITHUB_OUTPUT
-          else
-            case ${{ inputs.ref }} in
-              main)
-                echo "build_arch=alderlake" >> $GITHUB_OUTPUT
-                ;;
-              generic)
-                echo "build_arch=generic_x86_64" >> $GITHUB_OUTPUT
-                ;;
-              *)
-                exit 1
-                ;;
-            esac
-          fi
+          case ${{ inputs.ref }} in
+            main)
+              echo "build_arch=alderlake" >> $GITHUB_OUTPUT
+              ;;
+            generic)
+              echo "build_arch=generic_x86_64" >> $GITHUB_OUTPUT
+              ;;
+            *)
+              exit 1
+              ;;
+          esac
   check:
     runs-on: ubuntu-latest
     needs: arch
