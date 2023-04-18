@@ -95,6 +95,7 @@ jobs:
     - name: Set PKGBUILD architecture 
       if: ${{ needs.architecture.outputs.ref != 'generic '}}
       run: |
+        echo "I RAN!"
         sed -i 's/=nocona/=${{ needs.architecture.outputs.build_arch }}/g;s/=core-avx3/=${{ needs.architecture.outputs.build_arch }}/g' ${{ inputs.repo_pkg }}/PKGBUILD
     - name: Makepkg Build and Check
       id: makepkg
