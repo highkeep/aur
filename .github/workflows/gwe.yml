@@ -2,12 +2,17 @@ name: _gwe
 
 on:
   workflow_call:
+    inputs:
+      ref:
+        type: string
+        default: main
   workflow_dispatch:
 
 jobs:
   process:
     uses: highkeep/aur/.github/workflows/template_aur.yml@main
     with:
+      ref: ${{ inputs.ref }}
       repo_url: https://aur.archlinux.org
       repo_pkg: gwe
       nvidiaUtils: true
