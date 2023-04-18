@@ -8,24 +8,24 @@ on:
 jobs:
   psautohint:
     name: Run psautohint
-    uses: highkeep/aur/.github/workflows/psautohint.yml@main
+    uses: highkeep/aur/.github/workflows/psautohint.yml@generic
   python-ufonormalizer:
     name: Run python-ufonormalizer
     needs: psautohint
-    uses: highkeep/aur/.github/workflows/python-ufonormalizer.yml@main
+    uses: highkeep/aur/.github/workflows/python-ufonormalizer.yml@generic
   afdko:
     name: Run afdko
     needs: python-ufonormalizer
-    uses: highkeep/aur/.github/workflows/afdko.yml@main
+    uses: highkeep/aur/.github/workflows/afdko.yml@generic
   lib32-lzo:
     name: Run lib32-lzo
     needs: afdko
-    uses: highkeep/aur/.github/workflows/lib32-lzo.yml@main
+    uses: highkeep/aur/.github/workflows/lib32-lzo.yml@generic
   mingw-w64-tools:
     name: Run mingw-w64-tools
     needs: lib32-lzo
-    uses: highkeep/aur/.github/workflows/mingw-w64-tools.yml@main
+    uses: highkeep/aur/.github/workflows/mingw-w64-tools.yml@generic
   proton-ge-custom:
     name: Run proton-ge-custom
     needs: [afdko,lib32-lzo,mingw-w64-tools]
-    uses: highkeep/aur/.github/workflows/proton-ge-custom.yml@main
+    uses: highkeep/aur/.github/workflows/proton-ge-custom.yml@generic
