@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 env:
-  template: highkeep/aur/.github/workflows/template_aur.yml@${{ github.ref_name }}
+  template: highkeep/aur/.github/workflows/template_aur.yml@$GITHUB_REF_NAME
 
 jobs:
   process:
