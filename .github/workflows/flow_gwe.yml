@@ -1,20 +1,36 @@
 name: flow_gwe
 
 on:
-  push:
   workflow_dispatch:
   schedule:
     - cron: '0 0 */3 * *'
 
 jobs:
-  python-py3nvml:
+  main_python-py3nvml:
     name: Run python-py3nvml
     uses: highkeep/aur/.github/workflows/python-py3nvml.yml@main
-  python-injector:
+  generic_python-py3nvml:
+    name: Run python-py3nvml
+    uses: highkeep/aur/.github/workflows/python-py3nvml.yml@main
+    with:
+      ref: generic
+  main_python-injector:
     name: Run python-injector
-    needs: python-py3nvml
+    needs: main_python-py3nvml
     uses: highkeep/aur/.github/workflows/python-injector.yml@main
-  gwe:
+  generic_python-injector:
+    name: Run python-injector
+    needs: generic_python-py3nvml
+    uses: highkeep/aur/.github/workflows/python-injector.yml@main
+    with:
+      ref: generic
+  main_gwe:
     name: Run gwe
-    needs: [python-py3nvml,python-injector]
+    needs: [main_python-py3nvml,main_python-injector]
     uses: highkeep/aur/.github/workflows/gwe.yml@main
+  generic_gwe:
+    name: Run gwe
+    needs: [generic_python-py3nvml,generic_python-injector]
+    uses: highkeep/aur/.github/workflows/gwe.yml@main
+    with:
+      ref: generic

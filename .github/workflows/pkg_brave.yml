@@ -2,6 +2,10 @@ name: pkg_brave
 
 on:
   workflow_call:
+    inputs:
+      ref:
+        type: string
+        default: $GITHUB_REF_NAME
   workflow_dispatch:
   # schedule:
   #   - cron: '0 */6 * * *'

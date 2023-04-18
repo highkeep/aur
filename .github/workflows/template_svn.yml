@@ -9,8 +9,6 @@ on:
       repo_pkg:
         required: true
         type: string
-      build_arch:
-        type: string
       makepkgArgs:
         type: string
       multilib:
@@ -19,6 +17,9 @@ on:
       nvidiaUtils:
         type: boolean
         default: false
+      ref:
+        type: string
+        default: $GITHUB_REF_NAME
   workflow_dispatch:
     inputs:
       repo_url:
@@ -27,8 +28,6 @@ on:
       repo_pkg:
         required: true
         type: string
-      build_arch:
-        type: string
       makepkgArgs:
         type: string
       multilib:
@@ -37,6 +36,9 @@ on:
       nvidiaUtils:
         type: boolean
         default: false
+      ref:
+        type: string
+        default: $GITHUB_REF_NAME
 
 jobs:
   arch:
@@ -47,23 +49,17 @@ jobs:
       - name: Get Arch
         id: get_arch
         run: |
-          input=${{ github.event.inputs.build_arch }}
-
-          if [ ! -z ${input} ]; then
-            echo "build_arch=${input} }}" >> $GITHUB_OUTPUT
-          else
-            case ${{ github.ref_name }} in
-              main)
-                echo "build_arch=alderlake" >> $GITHUB_OUTPUT
-                ;;
-              generic)
-                echo "build_arch=generic_x86_64" >> $GITHUB_OUTPUT
-                ;;
-              *)
-                exit 1
-                ;;
-            esac
-          fi
+          case ${{ inputs.ref }} in
+            main)
+              echo "build_arch=alderlake" >> $GITHUB_OUTPUT
+              ;;
+            generic)
+              echo "build_arch=generic_x86_64" >> $GITHUB_OUTPUT
+              ;;
+            *)
+              exit 1
+              ;;
+          esac
   check:
     runs-on: ubuntu-latest
     needs: arch
@@ -72,6 +68,8 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3
+      with:
+        ref: ${{ inputs.ref }}
     - name: Compare Package
       id: update
       run: |
@@ -84,6 +82,8 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3
+      with:
+        ref: ${{ inputs.ref }}
     - name: Clone Package
       run: |
         source functions.sh && git-svn ${{ inputs.repo_url }} aur/${{ inputs.repo_pkg }}
