@@ -38,9 +38,6 @@ on:
         type: boolean
         default: false
 
-env:
-  build_arch:
-
 jobs:
   arch:
     runs-on: ubuntu-latest
