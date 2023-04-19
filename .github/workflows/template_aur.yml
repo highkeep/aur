@@ -96,7 +96,7 @@ jobs:
       run: |
         if [[ ${{ needs.architecture.outputs.ref }} != 'generic' ]]; then
           echo "I RAN!"
-          sed -i 's/=nocona/=${{ needs.architecture.outputs.build_arch }}/g;s/=core-avx3/=${{ needs.architecture.outputs.build_arch }}/g' ${{ inputs.repo_pkg }}/PKGBUILD
+          sed -i 's/=nocona/=${{ needs.architecture.outputs.build_arch }}/g;s/=core-avx2/=${{ needs.architecture.outputs.build_arch }}/g' ${{ inputs.repo_pkg }}/PKGBUILD
         fi
     - name: Makepkg Build and Check
       id: makepkg
