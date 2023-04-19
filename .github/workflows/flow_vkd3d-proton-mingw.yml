@@ -1,0 +1,16 @@
+name: flow_vkd3d-proton-mingw
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */6 * * *'
+
+jobs:
+  main_vkd3d-proton-mingw:
+    name: Run vkd3d-proton-mingw using alderlake
+    uses: highkeep/aur/.github/workflows/vkd3d-proton-mingw.yml@main
+  generic_vkd3d-proton-mingw:
+    name: Run vkd3d-proton-mingw using generic_x86_64
+    uses: highkeep/aur/.github/workflows/vkd3d-proton-mingw.yml@main
+    with:
+      ref: generic
