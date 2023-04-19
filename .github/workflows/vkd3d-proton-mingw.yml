@@ -11,8 +11,6 @@ on:
       ref:
         type: string
         default: ""
-  schedule:
-    - cron: '0 */6 * * *'
 
 jobs:
   process:
