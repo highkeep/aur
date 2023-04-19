@@ -6,16 +6,37 @@ on:
       ref:
         type: string
         default: ""
+      force:
+        type: boolean
+        default: false
+      upload:
+        type: boolean
+        default: true
+      commit:
+        type: boolean
+        default: true
   workflow_dispatch:
     inputs:
       ref:
         type: string
         default: ""
+      force:
+        type: boolean
+        default: false
+      upload:
+        type: boolean
+        default: true
+      commit:
+        type: boolean
+        default: true
 
 jobs:
   process:
     uses: highkeep/aur/.github/workflows/template_aur.yml@main
     with:
       ref: ${{ inputs.ref }}
+      force: ${{ inputs.force }}
+      upload: ${{ inputs.upload }}
+      commit: ${{ inputs.commit }}
       repo_url: https://aur.archlinux.org
       repo_pkg: act

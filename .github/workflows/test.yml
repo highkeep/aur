@@ -20,6 +20,15 @@ on:
       ref:
         type: string
         default: ""
+      force:
+        type: boolean
+        default: false
+      upload:
+        type: boolean
+        default: true
+      commit:
+        type: boolean
+        default: true
   workflow_dispatch:
     inputs:
       repo_url:
@@ -37,11 +46,32 @@ on:
       ref:
         type: string
         default: ""
+      force:
+        type: boolean
+        default: false
+      upload:
+        type: boolean
+        default: true
+      commit:
+        type: boolean
+        default: true
 
 jobs:
   tester:
     runs-on: ubuntu-latest
     steps:
+      - name: force check
+        if: ${{ inputs.force }}
+        run: |
+          echo "FORCE RAN!"
+      - name: upload check
+        if: ${{ inputs.force }}
+        run: |
+          echo "UPLOAD RAN!"
+      - name: commit check
+        if: ${{ inputs.force }}
+        run: |
+          echo "COMMIT RAN!"
       - name: set ref
         id: ref
         run: |
