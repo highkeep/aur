@@ -1,0 +1,16 @@
+name: flow_act
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */6 * * *'
+
+jobs:
+  main_act:
+    name: Run act using alderlake
+    uses: highkeep/aur/.github/workflows/act.yml@main
+  generic_act:
+    name: Run act using generic_x86_64
+    uses: highkeep/aur/.github/workflows/act.yml@main
+    with:
+      ref: generic
