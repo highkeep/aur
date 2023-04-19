@@ -1,0 +1,16 @@
+name: flow_gitkraken
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */6 * * *'
+
+jobs:
+  main_gitkraken:
+    name: Run gitkraken using alderlake
+    uses: highkeep/aur/.github/workflows/gitkraken.yml@main
+  generic_gitkraken:
+    name: Run gitkraken using generic_x86_64
+    uses: highkeep/aur/.github/workflows/gitkraken.yml@main
+    with:
+      ref: generic
