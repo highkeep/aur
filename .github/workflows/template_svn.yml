@@ -20,6 +20,12 @@ on:
       ref:
         type: string
         default: ""
+      force:
+        type: boolean
+        default: false
+      commit:
+        type: boolean
+        default: true
   workflow_dispatch:
     inputs:
       repo_url:
@@ -39,6 +45,12 @@ on:
       ref:
         type: string
         default: ""
+      force:
+        type: boolean
+        default: false
+      commit:
+        type: boolean
+        default: true
 
 jobs:
   architecture:
@@ -79,9 +91,13 @@ jobs:
     - name: Compare Package
       id: update
       run: |
-        source functions.sh && git-svn ${{ inputs.repo_url }} aur/${{ inputs.repo_pkg }}
-        source functions.sh && echo "sum=$(genLocalSum ${{ inputs.repo_pkg }})" >> $GITHUB_OUTPUT
-        source functions.sh && echo $(checkLocalVersion ${{ inputs.repo_pkg }}) >> $GITHUB_OUTPUT
+        if ${{ inputs.force }}; then
+          echo "update=true"
+        else
+          source functions.sh && git-svn ${{ inputs.repo_url }} aur/${{ inputs.repo_pkg }}
+          source functions.sh && echo "sum=$(genLocalSum ${{ inputs.repo_pkg }})" >> $GITHUB_OUTPUT
+          source functions.sh && echo $(checkLocalVersion ${{ inputs.repo_pkg }}) >> $GITHUB_OUTPUT
+        fi
   package: 
     runs-on: ubuntu-latest
     needs: [architecture,sanity]
@@ -152,13 +168,16 @@ jobs:
         file: ${{ steps.makepkg.outputs.repofile3 }}
         overwrite: true
     - name: Ignore package folder
+      if: ${{ inputs.commit }}
       run: | 
         grep /${{ inputs.repo_pkg }} .gitignore >/dev/null || echo /${{ inputs.repo_pkg }} >> .gitignore
     - name: Update version
+      if: ${{ inputs.commit }}
       run: |
         [ -f versions/${{ inputs.repo_pkg }} ] || touch versions/${{ inputs.repo_pkg }} && git add versions/${{ inputs.repo_pkg }}
         echo ${{ needs.sanity.outputs.sum }} > versions/${{ inputs.repo_pkg }}
     - name: Commit changes
+      if: ${{ inputs.commit }}
       run: |
         git config --global user.name 'Nick Marshall'
         git config --global user.email 'highkeep@users.noreply.github.com'
