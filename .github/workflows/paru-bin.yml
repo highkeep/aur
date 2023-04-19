@@ -1,4 +1,4 @@
-name: pkg_paru-bin
+name: _paru-bin
 
 on:
   workflow_call:
@@ -11,8 +11,6 @@ on:
       ref:
         type: string
         default: ""
-  schedule:
-    - cron: '0 */12 * * *'
 
 jobs:
   process:

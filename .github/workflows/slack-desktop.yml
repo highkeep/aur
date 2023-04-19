@@ -1,4 +1,4 @@
-name: pkg_act
+name: _slack-desktop
 
 on:
   workflow_call:
@@ -11,8 +11,6 @@ on:
       ref:
         type: string
         default: ""
-  schedule:
-    - cron: '0 */6 * * *'
 
 jobs:
   process:
@@ -20,4 +18,4 @@ jobs:
     with:
       ref: ${{ inputs.ref }}
       repo_url: https://aur.archlinux.org
-      repo_pkg: act
+      repo_pkg: slack-desktop
