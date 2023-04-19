@@ -32,7 +32,7 @@ on:
 
 jobs:
   process:
-    uses: highkeep/aur/.github/workflows/template_aur.yml@main
+    uses: highkeep/aur/.github/workflows/template_svn.yml@main
     with:
       ref: ${{ inputs.ref }}
       force: ${{ inputs.force }}
