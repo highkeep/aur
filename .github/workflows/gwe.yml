@@ -6,11 +6,23 @@ on:
       ref:
         type: string
         default: ""
+      force:
+        type: boolean
+        default: false
+      commit:
+        type: boolean
+        default: true
   workflow_dispatch:
     inputs:
       ref:
         type: string
         default: ""
+      force:
+        type: boolean
+        default: false
+      commit:
+        type: boolean
+        default: true
 
 jobs:
   process:
