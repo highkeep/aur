@@ -1,20 +1,19 @@
 name: _gwe
 
-on:
-  [workflow_call, workflow_dispatch]:
-    inputs:
-      ref:
-        type: string
-        default: ""
-      force:
-        type: boolean
-        default: false
-      upload:
-        type: boolean
-        default: true
-      commit:
-        type: boolean
-        default: true
+on: [workflow_call, workflow_dispatch]
+  inputs:
+    ref:
+      type: string
+      default: ""
+    force:
+      type: boolean
+      default: false
+    upload:
+      type: boolean
+      default: true
+    commit:
+      type: boolean
+      default: true
 
 jobs:
   process:
