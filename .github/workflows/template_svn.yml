@@ -79,6 +79,7 @@ jobs:
     - name: Compare Package
       id: update
       run: |
+        source functions.sh && git-svn ${{ inputs.repo_url }} aur/${{ inputs.repo_pkg }}
         source functions.sh && echo "sum=$(genLocalSum ${{ inputs.repo_pkg }})" >> $GITHUB_OUTPUT
         source functions.sh && echo $(checkLocalVersion ${{ inputs.repo_pkg }}) >> $GITHUB_OUTPUT
   package: 
@@ -95,6 +96,8 @@ jobs:
         source functions.sh && git-svn ${{ inputs.repo_url }} aur/${{ inputs.repo_pkg }}
     - name: Set PKGBUILD architecture 
       run: |
+        cat ${{ inputs.repo_pkg }}/PKGBUILD
+
         if [[ ${{ needs.architecture.outputs.ref }} != 'generic' ]]; then
           echo "I RAN!"
           sed -i 's/=nocona/=${{ needs.architecture.outputs.build_arch }}/g;s/=core-avx2/=${{ needs.architecture.outputs.build_arch }}/g' ${{ inputs.repo_pkg }}/PKGBUILD
