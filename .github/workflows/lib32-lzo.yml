@@ -40,3 +40,4 @@ jobs:
       commit: ${{ inputs.commit }}
       repo_url: https://github.com/loathingKernel/PKGBUILDs.git
       repo_pkg: lib32-lzo
+      multilib: true
