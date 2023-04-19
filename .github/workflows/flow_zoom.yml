@@ -6,9 +6,6 @@ on:
     - cron: '0 */6 * * *'
 
 jobs:
-  main_zoom:
-    name: Run zoom using alderlake
-    uses: highkeep/aur/.github/workflows/zoom.yml@main
   generic_zoom:
     name: Run zoom using generic_x86_64
     uses: highkeep/aur/.github/workflows/zoom.yml@main
