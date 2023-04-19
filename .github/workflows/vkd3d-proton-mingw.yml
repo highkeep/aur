@@ -1,4 +1,4 @@
-name: pkg_vkd3d-proton-mingw
+name: _vkd3d-proton-mingw
 
 on:
   workflow_call:
@@ -21,3 +21,4 @@ jobs:
       ref: ${{ inputs.ref }}
       repo_url: https://aur.archlinux.org
       repo_pkg: vkd3d-proton-mingw
+      nvidiaUtils: true
