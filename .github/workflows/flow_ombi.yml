@@ -6,21 +6,21 @@ on:
     - cron: '0 */6 * * *'
 
 jobs:
-  main_openssl-1.0:
-    name: Run openssl-1.0 using alderlake
+  main_openssl_1.0:
+    name: Run openssl_1.0 using alderlake
     uses: highkeep/aur/.github/workflows/openssl-1.0.yml@main
   main_ombi:
     name: Run ombi using alderlake
-    needs: main_openssl-1.0
+    needs: main_openssl_1.0
     uses: highkeep/aur/.github/workflows/ombi.yml@main
-  generic_openssl-1.0:
+  generic_openssl_1.0:
     name: Run openssl-1.0 using generic_x86_64
     uses: highkeep/aur/.github/workflows/openssl-1.0.yml@main
     with:
       ref: generic
   generic_ombi:
     name: Run ombi using generic_x86_64
-    needs: generic_openssl-1.0
+    needs: generic_openssl_1.0
     uses: highkeep/aur/.github/workflows/ombi.yml@main
     with:
       ref: generic
