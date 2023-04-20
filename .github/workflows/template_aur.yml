@@ -117,7 +117,7 @@ jobs:
     - name: Set PKGBUILD architecture 
       run: |
         if [[ ${{ needs.architecture.outputs.ref }} != 'generic' ]]; then
-          sed -ir 's/(march=)[A-Za-z0-9-]+(\s?)/\1${{ needs.architecture.outputs.build_arch }}\2/g;s/(mtune=)[A-Za-z0-9-]+(\s?)/\1${{ needs.architecture.outputs.build_arch }}\2/g;s/(target-cpu=)[A-Za-z0-9-]+(\s?)/\1${{ needs.architecture.outputs.build_arch }}\2/g' ${{ inputs.repo_pkg }}/PKGBUILD
+          source functions.sh && setArch ${{ needs.architecture.outputs.build_arch }} ${{ inputs.repo_pkg }}/PKGBUILD
         fi
         cat ${{ inputs.repo_pkg }}/PKGBUILD
     - name: Makepkg Build and Check
