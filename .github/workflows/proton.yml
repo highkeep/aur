@@ -40,3 +40,4 @@ jobs:
       commit: ${{ inputs.commit }}
       repo_url: https://aur.archlinux.org
       repo_pkg: proton
+      nvidiaUtils: true
