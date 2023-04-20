@@ -20,6 +20,15 @@ on:
       ref:
         type: string
         default: ""
+      force:
+        type: boolean
+        default: false
+      upload:
+        type: boolean
+        default: true
+      commit:
+        type: boolean
+        default: true
   workflow_dispatch:
     inputs:
       repo_url:
@@ -39,6 +48,15 @@ on:
       ref:
         type: string
         default: ""
+      force:
+        type: boolean
+        default: false
+      upload:
+        type: boolean
+        default: true
+      commit:
+        type: boolean
+        default: true
 
 jobs:
   architecture:
@@ -120,43 +138,51 @@ jobs:
         echo "Package: ${{ steps.makepkg.outputs.repofile2 }}"
         echo "Package: ${{ steps.makepkg.outputs.repofile3 }}"
     - uses: svenstaro/upload-release-action@v2
+      if: ${{ inputs.upload }}
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
         tag: ${{ needs.architecture.outputs.build_arch }}
         file: ${{ steps.makepkg.outputs.pkgfile0 }}
         overwrite: true
     - uses: svenstaro/upload-release-action@v2
+      if: ${{ inputs.upload }}
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
         tag: ${{ needs.architecture.outputs.build_arch }}
         file: ${{ steps.makepkg.outputs.repofile0 }}
         overwrite: true
     - uses: svenstaro/upload-release-action@v2
+      if: ${{ inputs.upload }}
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
         tag: ${{ needs.architecture.outputs.build_arch }}
         file: ${{ steps.makepkg.outputs.repofile1 }}
         overwrite: true
     - uses: svenstaro/upload-release-action@v2
+      if: ${{ inputs.upload }}
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
         tag: ${{ needs.architecture.outputs.build_arch }}
         file: ${{ steps.makepkg.outputs.repofile2 }}
         overwrite: true
     - uses: svenstaro/upload-release-action@v2
+      if: ${{ inputs.upload }}
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
         tag: ${{ needs.architecture.outputs.build_arch }}
         file: ${{ steps.makepkg.outputs.repofile3 }}
         overwrite: true
     - name: Ignore package folder
+      if: ${{ inputs.commit }}
       run: | 
         grep /${{ inputs.repo_pkg }} .gitignore >/dev/null || echo /${{ inputs.repo_pkg }} >> .gitignore
     - name: Update version
+      if: ${{ inputs.commit }}
       run: |
         [ -f versions/${{ inputs.repo_pkg }} ] || touch versions/${{ inputs.repo_pkg }} && git add versions/${{ inputs.repo_pkg }}
         echo ${{ needs.sanity.outputs.sum }} > versions/${{ inputs.repo_pkg }}
     - name: Commit changes
+      if: ${{ inputs.commit }}
       run: |
         git config --global user.name 'Nick Marshall'
         git config --global user.email 'highkeep@users.noreply.github.com'
