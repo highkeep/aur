@@ -79,6 +79,8 @@ jobs:
           echo "ref=${input_ref:-main}" >> $GITHUB_OUTPUT
       - name: echo
         run: |
+          git -v
+          git svn -h
           echo ${{ github.event.inputs.repo_url }} ${{ inputs.repo_url }}
           echo ${{ github.event.inputs.repo_pkg }} ${{ inputs.repo_pkg }}
           echo ${{ github.event.inputs.makepkgArgs }} ${{ inputs.makepkgArgs }}
