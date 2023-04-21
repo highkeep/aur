@@ -60,7 +60,7 @@ on:
 
 jobs:
   architecture:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     outputs:
       build_arch: ${{ steps.get_arch.outputs.build_arch }}
       ref: ${{ steps.get_ref.outputs.ref }}
@@ -85,7 +85,7 @@ jobs:
               ;;
           esac
   sanity:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: architecture
     outputs:
       status: ${{ steps.update.outputs.update }}
@@ -103,7 +103,7 @@ jobs:
           source functions.sh && echo $(checkGitVersion ${{ inputs.repo_url }} ${{ inputs.repo_pkg }}) >> $GITHUB_OUTPUT
         fi
   package: 
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: [architecture,sanity]
     if: ${{ needs.sanity.outputs.status == 'true' }}
     steps:
