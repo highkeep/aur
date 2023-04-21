@@ -68,7 +68,7 @@ jobs:
       - name: Set target ref
         id: get_ref
         run: |
-          input_ref=${{ github.event.inputs.ref }}
+          input_ref=${{ inputs.ref }}
           echo "ref=${input_ref:-$GITHUB_REF_NAME}" >> $GITHUB_OUTPUT
       - name: Match architecture
         id: get_arch
@@ -97,10 +97,10 @@ jobs:
     - name: Compare Package
       id: update
       run: |
-        if ${{ github.event.inputs.force }}; then
+        if ${{ inputs.force }}; then
           echo "update=true" >> $GITHUB_OUTPUT
         else
-          source functions.sh && echo $(checkGitVersion ${{ github.event.inputs.repo_url }} ${{ github.event.inputs.repo_pkg }}) >> $GITHUB_OUTPUT
+          source functions.sh && echo $(checkGitVersion ${{ inputs.repo_url }} ${{ inputs.repo_pkg }}) >> $GITHUB_OUTPUT
         fi
   package: 
     runs-on: ubuntu-latest
@@ -113,23 +113,23 @@ jobs:
         ref: ${{ needs.architecture.outputs.ref }}
     - name: Clone Package
       run: |
-        git clone ${{ github.event.inputs.repo_url }}/${{ github.event.inputs.repo_pkg }}.git
+        git clone ${{ inputs.repo_url }}/${{ inputs.repo_pkg }}.git
     - name: Set PKGBUILD architecture 
       run: |
         if [[ ${{ needs.architecture.outputs.ref }} != 'generic' ]]; then
-          source functions.sh && setArch ${{ needs.architecture.outputs.build_arch }} ${{ github.event.inputs.repo_pkg }}/PKGBUILD
+          source functions.sh && setArch ${{ needs.architecture.outputs.build_arch }} ${{ inputs.repo_pkg }}/PKGBUILD
         fi
-        cat ${{ github.event.inputs.repo_pkg }}/PKGBUILD
+        cat ${{ inputs.repo_pkg }}/PKGBUILD
     - name: Makepkg Build and Check
       id: makepkg
       uses: highkeep/pkgbuild-action@master
       with:
-        pkgdir: ${{ github.event.inputs.repo_pkg }}
+        pkgdir: ${{ inputs.repo_pkg }}
         pacmanConf: "configs/${{ needs.architecture.outputs.build_arch }}_pacman.conf"
         makepkgConf: "configs/${{ needs.architecture.outputs.build_arch }}_makepkg.conf"
-        makepkgArgs: ${{ github.event.inputs.makepkgArgs }}
-        multilib: ${{ github.event.inputs.multilib }}
-        nvidiaUtils: ${{ github.event.inputs.nvidiaUtils }}
+        makepkgArgs: ${{ inputs.makepkgArgs }}
+        multilib: ${{ inputs.multilib }}
+        nvidiaUtils: ${{ inputs.nvidiaUtils }}
         repoReleaseTag: "${{ needs.architecture.outputs.build_arch }}"
     - name: Print Package Files
       run: |
@@ -140,51 +140,51 @@ jobs:
         echo "Package: ${{ steps.makepkg.outputs.repofile2 }}"
         echo "Package: ${{ steps.makepkg.outputs.repofile3 }}"
     - uses: svenstaro/upload-release-action@v2
-      if: ${{ github.event.inputs.upload }}
+      if: ${{ inputs.upload }}
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
         tag: ${{ needs.architecture.outputs.build_arch }}
         file: ${{ steps.makepkg.outputs.pkgfile0 }}
         overwrite: true
     - uses: svenstaro/upload-release-action@v2
-      if: ${{ github.event.inputs.upload }}
+      if: ${{ inputs.upload }}
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
         tag: ${{ needs.architecture.outputs.build_arch }}
         file: ${{ steps.makepkg.outputs.repofile0 }}
         overwrite: true
     - uses: svenstaro/upload-release-action@v2
-      if: ${{ github.event.inputs.upload }}
+      if: ${{ inputs.upload }}
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
         tag: ${{ needs.architecture.outputs.build_arch }}
         file: ${{ steps.makepkg.outputs.repofile1 }}
         overwrite: true
     - uses: svenstaro/upload-release-action@v2
-      if: ${{ github.event.inputs.upload }}
+      if: ${{ inputs.upload }}
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
         tag: ${{ needs.architecture.outputs.build_arch }}
         file: ${{ steps.makepkg.outputs.repofile2 }}
         overwrite: true
     - uses: svenstaro/upload-release-action@v2
-      if: ${{ github.event.inputs.upload }}
+      if: ${{ inputs.upload }}
       with:
         repo_token: ${{secrets.GITHUB_TOKEN}}
         tag: ${{ needs.architecture.outputs.build_arch }}
         file: ${{ steps.makepkg.outputs.repofile3 }}
         overwrite: true
     - name: Ignore package folder
-      if: ${{ github.event.inputs.commit }}
+      if: ${{ inputs.commit }}
       run: | 
-        grep /${{ github.event.inputs.repo_pkg }} .gitignore >/dev/null || echo /${{ github.event.inputs.repo_pkg }} >> .gitignore
+        grep /${{ inputs.repo_pkg }} .gitignore >/dev/null || echo /${{ inputs.repo_pkg }} >> .gitignore
     - name: Update version
-      if: ${{ github.event.inputs.commit }}
+      if: ${{ inputs.commit }}
       run: |
-        [ -f versions/${{ github.event.inputs.repo_pkg }} ] || touch versions/${{ github.event.inputs.repo_pkg }} && git add versions/${{ github.event.inputs.repo_pkg }}
-        echo `git -C ${{ github.event.inputs.repo_pkg }} rev-parse HEAD` > versions/${{ github.event.inputs.repo_pkg }}
+        [ -f versions/${{ inputs.repo_pkg }} ] || touch versions/${{ inputs.repo_pkg }} && git add versions/${{ inputs.repo_pkg }}
+        echo `git -C ${{ inputs.repo_pkg }} rev-parse HEAD` > versions/${{ inputs.repo_pkg }}
     - name: Commit changes
-      if: ${{ github.event.inputs.commit }}
+      if: ${{ inputs.commit }}
       run: |
         git config --global user.name 'Nick Marshall'
         git config --global user.email 'highkeep@users.noreply.github.com'
