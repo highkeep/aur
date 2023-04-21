@@ -60,6 +60,9 @@ jobs:
   tester:
     runs-on: ubuntu-latest
     steps:
+      - name: update?
+        run: |
+          apt -qq update && apt -y install git-svn
       - name: force check
         if: ${{ inputs.force }}
         run: |
