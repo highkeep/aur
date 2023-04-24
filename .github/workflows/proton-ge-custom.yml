@@ -26,18 +26,26 @@ jobs:
       svnTarget: true
       multilib: true
       art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
-  afdko:
-    needs: python-ufonormalizer
-    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@testing
-    with:
-      repoUrl: https://aur.archlinux.org/afdko.git
-      repoPkg: afdko
-      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
   mingw-w64-tools:
-    needs: python-ufonormalizer
     uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@testing
     with:
       repoUrl: https://aur.archlinux.org/mingw-w64-tools.git
       repoPkg: mingw-w64-tools
       makepkgArgs: --skippgpcheck
+      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
+  afdko:
+    needs: [psautohint, python-ufonormalizer]
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@testing
+    with:
+      repoUrl: https://aur.archlinux.org/afdko.git
+      repoPkg: afdko
+      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
+  proton-ge-custom:
+    needs: [lib32-lzo, mingw-w64-tools, afdko]
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@testing
+    with:
+      repoUrl: https://aur.archlinux.org/proton-ge-custom.git
+      repoPkg: proton-ge-custom
+      updatePkgbuild: true
+      nvidiaUtils: true
       art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
