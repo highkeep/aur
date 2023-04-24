@@ -12,8 +12,8 @@ Personal CI/CD builder for AUR / Custom packages
  - [Alderlake](https://github.com/highkeep/aur/releases/tag/alderlake)
 
 
-## Acknowledgements
+<!-- ## Acknowledgements
 
  - [Google](https://google.com)
  - [loathingKernel](https://github.com/loathingKernel)
-     - Started with bulding proton locally and ended with learning actions based on their PKGBUILDs repo.
+     - Started with bulding proton locally and ended with learning actions based on their PKGBUILDs repo. -->
