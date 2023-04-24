@@ -6,11 +6,11 @@ on:
   #   - cron: '0 0 */3 * *'
 
 jobs:
-  python-py3nvm:
+  python-py3nvml:
     uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@testing
     with:
-      repoUrl: https://aur.archlinux.org/python-py3nvm.git
-      repoPkg: python-py3nvm
+      repoUrl: https://aur.archlinux.org/python-py3nvml.git
+      repoPkg: python-py3nvml
       nvidiaUtils: true
   python-injector:
     uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@testing
