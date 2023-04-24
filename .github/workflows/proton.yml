@@ -1,0 +1,51 @@
+name: proton
+
+on:
+  workflow_dispatch:
+  # schedule:
+  #   - cron: '0 */6 * * *'
+
+jobs:
+  psautohint:
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@testing
+    with:
+      repoUrl: https://aur.archlinux.org/psautohint.git
+      repoPkg: psautohint
+      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
+  python-ufonormalizer:
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@testing
+    with:
+      repoUrl: https://aur.archlinux.org/python-ufonormalizer.git
+      repoPkg: python-ufonormalizer
+      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
+  afdko:
+    needs: [psautohint, python-ufonormalizer]
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@testing
+    with:
+      repoUrl: https://aur.archlinux.org/afdko.git
+      repoPkg: afdko
+      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
+  lib32-lzo:
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@testing
+    with:
+      repoUrl: https://github.com/loathingKernel/PKGBUILDs.git
+      repoPkg: aur/lib32-lzo
+      svnTarget: true
+      multilib: true
+      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
+  mingw-w64-tools:
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@testing
+    with:
+      repoUrl: https://aur.archlinux.org/mingw-w64-tools.git
+      repoPkg: mingw-w64-tools
+      makepkgArgs: --skippgpcheck
+      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
+  proton:
+    needs: [lib32-lzo, mingw-w64-tools, afdko]
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@testing
+    with:
+      repoUrl: https://aur.archlinux.org/proton.git
+      repoPkg: proton
+      updatePkgbuild: true
+      nvidiaUtils: true
+      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'

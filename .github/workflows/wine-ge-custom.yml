@@ -1,0 +1,16 @@
+name: wine-ge-custom
+
+on:
+  workflow_dispatch:
+  # schedule:
+  #   - cron: '0 */6 * * *'
+
+jobs:
+  wine-ge-custom:
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@testing
+    with:
+      repoUrl: https://aur.archlinux.org/wine-ge-custom.git
+      repoPkg: wine-ge-custom
+      updatePkgbuild: true
+      nvidiaUtils: true
+      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'

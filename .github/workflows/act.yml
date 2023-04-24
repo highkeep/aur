@@ -1,0 +1,15 @@
+name: act
+
+on:
+  workflow_dispatch:
+  # schedule:
+  #   - cron: '0 */6 * * *'
+
+jobs:
+  act:
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@testing
+    with:
+      repoUrl: https://aur.archlinux.org/act.git
+      repoPkg: act
+      nvidiaUtils: true
+      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'

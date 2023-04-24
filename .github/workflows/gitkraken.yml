@@ -1,0 +1,14 @@
+name: gitkraken
+
+on:
+  workflow_dispatch:
+  # schedule:
+  #   - cron: '0 */6 * * *'
+
+jobs:
+  gitkraken:
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@testing
+    with:
+      repoUrl: https://aur.archlinux.org/gitkraken.git
+      repoPkg: gitkraken
+      art: '[{"architecture":"generic", "repoTag":"generic_x86_64"}]'

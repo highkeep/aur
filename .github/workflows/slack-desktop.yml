@@ -1,0 +1,14 @@
+name: slack-desktop
+
+on:
+  workflow_dispatch:
+  # schedule:
+  #   - cron: '0 */6 * * *'
+
+jobs:
+  slack-desktop:
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@testing
+    with:
+      repoUrl: https://aur.archlinux.org/slack-desktop.git
+      repoPkg: slack-desktop
+      art: '[{"architecture":"generic", "repoTag":"generic_x86_64"}]'
