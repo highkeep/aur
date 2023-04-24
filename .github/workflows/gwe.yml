@@ -21,7 +21,7 @@ jobs:
       nvidiaUtils: true
       art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
   gwe:
-    needs: [python-py3nvm, python-injector]
+    needs: [python-py3nvml, python-injector]
     uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@testing
     with:
       repoUrl: https://aur.archlinux.org/gwe.git
