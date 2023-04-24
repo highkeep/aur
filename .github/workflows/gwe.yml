@@ -7,20 +7,20 @@ on:
 
 jobs:
   python-py3nvm:
-    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v1.0
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@main
     with:
       repoUrl: https://aur.archlinux.org/python-py3nvm.git
       repoPkg: python-py3nvm
       nvidiaUtils: true
   python-injector:
-    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v1.0
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@main
     with:
       repoUrl: https://aur.archlinux.org/python-injector.git
       repoPkg: python-injector
       nvidiaUtils: true
   gwe:
     needs: [python-py3nvm, python-injector]
-    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v1.0
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@main
     with:
       repoUrl: https://aur.archlinux.org/gwe.git
       repoPkg: gwe
