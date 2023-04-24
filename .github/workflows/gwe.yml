@@ -7,14 +7,14 @@ on:
 
 jobs:
   python-py3nvml:
-    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@testing
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.1
     with:
       repoUrl: https://aur.archlinux.org/python-py3nvml.git
       repoPkg: python-py3nvml
       nvidiaUtils: true
       art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
   python-injector:
-    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@testing
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.1
     with:
       repoUrl: https://aur.archlinux.org/python-injector.git
       repoPkg: python-injector
@@ -22,7 +22,7 @@ jobs:
       art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
   gwe:
     needs: [python-py3nvml, python-injector]
-    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@testing
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.1
     with:
       repoUrl: https://aur.archlinux.org/gwe.git
       repoPkg: gwe
