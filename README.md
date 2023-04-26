@@ -14,7 +14,6 @@
 [![zoom](https://github.com/highkeep/aur/actions/workflows/zoom.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/zoom.yml)
 
 <br>
-
 Personal CI/CD builder for AUR / Custom packages
 
 ** GPU aware packages are built using nvidia-utils **
