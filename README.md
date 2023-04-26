@@ -1,5 +1,4 @@
-# aur
-## <b>A personal CI/CD builder for AUR / Custom packages</b>
+# aur [<i>A personal CI/CD builder for AUR / Custom packages</i>]
 <br>
 
 [![act](https://github.com/highkeep/aur/actions/workflows/act.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/act.yml)
