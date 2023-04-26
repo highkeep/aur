@@ -1,4 +1,6 @@
 # aur
+## <b>A personal CI/CD builder for AUR / Custom packages</b>
+<br>
 
 [![act](https://github.com/highkeep/aur/actions/workflows/act.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/act.yml)
 [![chiaki](https://github.com/highkeep/aur/actions/workflows/chiaki.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/chiaki.yml)
@@ -12,11 +14,6 @@
 [![slack-desktop](https://github.com/highkeep/aur/actions/workflows/slack-desktop.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/slack-desktop.yml)
 [![wine-ge-custom](https://github.com/highkeep/aur/actions/workflows/wine-ge-custom.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/wine-ge-custom.yml)
 [![zoom](https://github.com/highkeep/aur/actions/workflows/zoom.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/zoom.yml)
-
-<br>
-
-## <b>Personal CI/CD builder for AUR / Custom packages</b>
-
 <br>
 
 ### Built Packages - Architectures
