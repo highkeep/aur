@@ -1,4 +1,5 @@
-# aur [<i>A personal CI/CD builder for AUR / Custom packages</i>]
+# aur 
+## <i>A personal CI/CD builder for AUR / Custom packages</i>
 <br>
 
 [![act](https://github.com/highkeep/aur/actions/workflows/act.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/act.yml)
@@ -15,7 +16,7 @@
 [![zoom](https://github.com/highkeep/aur/actions/workflows/zoom.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/zoom.yml)
 <br>
 
-### Built Packages - Architectures
+### <b>Built Packages - Architectures</b>
 <i>** GPU aware packages are built using nvidia-utils **</i>
 
  - [Generic x86_64](https://github.com/highkeep/aur/releases/tag/generic_x86_64) 
