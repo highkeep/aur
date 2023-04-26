@@ -12,6 +12,9 @@
 [![slack-desktop](https://github.com/highkeep/aur/actions/workflows/slack-desktop.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/slack-desktop.yml)
 [![wine-ge-custom](https://github.com/highkeep/aur/actions/workflows/wine-ge-custom.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/wine-ge-custom.yml)
 [![zoom](https://github.com/highkeep/aur/actions/workflows/zoom.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/zoom.yml)
+
+<br>
+
 Personal CI/CD builder for AUR / Custom packages
 
 ** GPU aware packages are built using nvidia-utils **
