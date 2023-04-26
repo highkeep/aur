@@ -14,12 +14,13 @@
 [![zoom](https://github.com/highkeep/aur/actions/workflows/zoom.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/zoom.yml)
 
 <br>
-Personal CI/CD builder for AUR / Custom packages
 
-** GPU aware packages are built using nvidia-utils **
+## <b>Personal CI/CD builder for AUR / Custom packages</b>
 
+<br>
 
-## Built Packages - Architectures
+### Built Packages - Architectures
+<i>** GPU aware packages are built using nvidia-utils **</i>
 
  - [Generic x86_64](https://github.com/highkeep/aur/releases/tag/generic_x86_64) 
    - Contains all packages.
