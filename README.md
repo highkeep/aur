@@ -19,8 +19,7 @@
 ### <b>Built Packages - Architectures</b>
 <i>** GPU aware packages are built using nvidia-utils **</i>
 
- - [Generic x86_64](https://github.com/highkeep/aur/releases/tag/generic_x86_64) 
-   - Contains all packages.
+ - [Generic x86_64](https://github.com/highkeep/aur/releases/tag/generic_x86_64) <i>Contains all packages.</i>
  - [Alderlake](https://github.com/highkeep/aur/releases/tag/alderlake)
 
 
