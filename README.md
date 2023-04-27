@@ -4,6 +4,7 @@
 
 [![act](https://github.com/highkeep/aur/actions/workflows/act.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/act.yml)
 [![chiaki](https://github.com/highkeep/aur/actions/workflows/chiaki.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/chiaki.yml)
+[![dropbox](https://github.com/highkeep/aur/actions/workflows/dropbox.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/dropbox.yml)
 [![gitkraken](https://github.com/highkeep/aur/actions/workflows/gitkraken.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/gitkraken.yml)
 [![gwe](https://github.com/highkeep/aur/actions/workflows/gwe.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/gwe.yml)
 [![ombi](https://github.com/highkeep/aur/actions/workflows/ombi.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/ombi.yml)
