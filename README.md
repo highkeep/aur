@@ -16,7 +16,7 @@
 [![zoom](https://github.com/highkeep/aur/actions/workflows/zoom.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/zoom.yml)
 <br>
 
-### <b>Built Packages - Architectures</b>
+### <b>Package Repositories</b>
 <i>** GPU aware packages are built using nvidia-utils **</i>
 
  - [Generic x86_64](https://github.com/highkeep/aur/releases/tag/generic_x86_64) <i>Contains all packages.</i>
