@@ -11,4 +11,5 @@ jobs:
     with:
       repoUrl: https://aur.archlinux.org/dropbox.git
       repoPkg: dropbox
+      makepkgArgs: --skippgpcheck
       art: '[{"architecture":"generic", "repoTag":"generic_x86_64"}]'
