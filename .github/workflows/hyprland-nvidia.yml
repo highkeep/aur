@@ -1,0 +1,15 @@
+name: hyprland-nvidia
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 7,19 * * *"
+
+jobs:
+  hyprland-nvidia:
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.2
+    with:
+      repoUrl: https://aur.archlinux.org/hyprland-nvidia.git
+      repoPkg: hyprland-nvidia
+      nvidiaUtils: true
+      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
