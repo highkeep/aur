@@ -11,5 +11,5 @@ jobs:
     with:
       repoUrl: https://aur.archlinux.org/waybar-hyprland.git
       repoPkg: waybar-hyprland
-      nvidiaUtils: true
+      multilib: true
       art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'

@@ -11,5 +11,5 @@ jobs:
     with:
       repoUrl: https://aur.archlinux.org/swww.git
       repoPkg: swww
-      nvidiaUtils: true
+      multilib: true
       art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
