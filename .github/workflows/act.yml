@@ -7,7 +7,7 @@ on:
 
 jobs:
   act:
-    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.1
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.2
     with:
       repoUrl: https://aur.archlinux.org/act.git
       repoPkg: act
