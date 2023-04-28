@@ -1,0 +1,15 @@
+name: waybar-hyprland
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 7,19 * * *"
+
+jobs:
+  waybar-hyprland:
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.2
+    with:
+      repoUrl: https://aur.archlinux.org/waybar-hyprland.git
+      repoPkg: waybar-hyprland
+      nvidiaUtils: true
+      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
