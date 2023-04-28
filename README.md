@@ -7,6 +7,7 @@
 [![dropbox](https://github.com/highkeep/aur/actions/workflows/dropbox.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/dropbox.yml)
 [![gitkraken](https://github.com/highkeep/aur/actions/workflows/gitkraken.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/gitkraken.yml)
 [![gwe](https://github.com/highkeep/aur/actions/workflows/gwe.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/gwe.yml)
+[![hyprland-nvidia](https://github.com/highkeep/aur/actions/workflows/hyprland-nvidia.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/hyprland-nvidia.yml)
 [![ombi](https://github.com/highkeep/aur/actions/workflows/ombi.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/ombi.yml)
 [![paru-bin](https://github.com/highkeep/aur/actions/workflows/paru-bin.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/paru-bin.yml)
 [![proton-experimental](https://github.com/highkeep/aur/actions/workflows/proton-experimental.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/proton-experimental.yml)
@@ -15,6 +16,7 @@
 [![slack-desktop](https://github.com/highkeep/aur/actions/workflows/slack-desktop.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/slack-desktop.yml)
 [![wine-ge-custom](https://github.com/highkeep/aur/actions/workflows/wine-ge-custom.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/wine-ge-custom.yml)
 [![zoom](https://github.com/highkeep/aur/actions/workflows/zoom.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/zoom.yml)
+
 <br>
 
 ### <b>Package Repositories</b>
