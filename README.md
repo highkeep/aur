@@ -1,5 +1,5 @@
 # aur 
-## <i>A personal CI for building AUR & Custom packages</i>
+## <i>A personal CI for testing/building AUR & Custom packages</i>
 <br>
 
 [![act](https://github.com/highkeep/aur/actions/workflows/act.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/act.yml)
