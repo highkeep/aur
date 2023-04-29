@@ -11,4 +11,5 @@ jobs:
     with:
       repoUrl: https://aur.archlinux.org/wd719x-firmware.git
       repoPkg: wd719x-firmware
+      updateSrcInfo: true
       art: '[{"architecture":"generic", "repoTag":"generic_x86_64"}]'
