@@ -1,0 +1,14 @@
+name: aic94xx-firmware
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 1,15 * *"
+
+jobs:
+  aic94xx-firmware:
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.2
+    with:
+      repoUrl: https://aur.archlinux.org/aic94xx-firmware.git
+      repoPkg: aic94xx-firmware
+      art: '[{"architecture":"generic", "repoTag":"generic_x86_64"}]'

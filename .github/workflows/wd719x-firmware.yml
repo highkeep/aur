@@ -1,0 +1,14 @@
+name: wd719x-firmware
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 1,15 * *"
+
+jobs:
+  wd719x-firmware:
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.2
+    with:
+      repoUrl: https://aur.archlinux.org/wd719x-firmware.git
+      repoPkg: wd719x-firmware
+      art: '[{"architecture":"generic", "repoTag":"generic_x86_64"}]'
