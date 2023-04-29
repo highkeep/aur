@@ -3,17 +3,19 @@
 <br>
 
 [![act](https://github.com/highkeep/aur/actions/workflows/act.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/act.yml)
+[![aic94xx-firmware](https://github.com/highkeep/aur/actions/workflows/aic94xx-firmware.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/aic94xx-firmware.yml)
+[![ast-firmware](https://github.com/highkeep/aur/actions/workflows/ast-firmware.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/ast-firmware.yml)
 [![chiaki](https://github.com/highkeep/aur/actions/workflows/chiaki.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/chiaki.yml)
 [![dropbox](https://github.com/highkeep/aur/actions/workflows/dropbox.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/dropbox.yml)
-[![gitkraken](https://github.com/highkeep/aur/actions/workflows/gitkraken.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/gitkraken.yml)
 [![gwe](https://github.com/highkeep/aur/actions/workflows/gwe.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/gwe.yml)
-[![hyprland-nvidia](https://github.com/highkeep/aur/actions/workflows/hyprland-nvidia.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/hyprland-nvidia.yml)
 [![ombi](https://github.com/highkeep/aur/actions/workflows/ombi.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/ombi.yml)
 [![paru-bin](https://github.com/highkeep/aur/actions/workflows/paru-bin.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/paru-bin.yml)
 [![proton-experimental](https://github.com/highkeep/aur/actions/workflows/proton-experimental.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/proton-experimental.yml)
 [![proton-ge-custom](https://github.com/highkeep/aur/actions/workflows/proton-ge-custom.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/proton-ge-custom.yml)
 [![proton](https://github.com/highkeep/aur/actions/workflows/proton.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/proton.yml)
 [![slack-desktop](https://github.com/highkeep/aur/actions/workflows/slack-desktop.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/slack-desktop.yml)
+[![upd72020x-fw](https://github.com/highkeep/aur/actions/workflows/upd72020x-fw.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/upd72020x-fw.yml)
+[![wd719x-firmware](https://github.com/highkeep/aur/actions/workflows/wd719x-firmware.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/wd719x-firmware.yml)
 [![wine-ge-custom](https://github.com/highkeep/aur/actions/workflows/wine-ge-custom.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/wine-ge-custom.yml)
 [![zoom](https://github.com/highkeep/aur/actions/workflows/zoom.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/zoom.yml)
 
