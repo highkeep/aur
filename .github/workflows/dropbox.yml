@@ -7,7 +7,7 @@ on:
 
 jobs:
   dropbox:
-    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.2
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.3
     with:
       repoUrl: https://aur.archlinux.org/dropbox.git
       repoPkg: dropbox

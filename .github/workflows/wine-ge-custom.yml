@@ -7,7 +7,7 @@ on:
 
 jobs:
   wine-ge-custom:
-    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.2
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.3
     with:
       repoUrl: https://aur.archlinux.org/wine-ge-custom.git
       repoPkg: wine-ge-custom

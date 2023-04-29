@@ -7,7 +7,7 @@ on:
 
 jobs:
   upd72020x-fw:
-    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.2
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.3
     with:
       repoUrl: https://aur.archlinux.org/upd72020x-fw.git
       repoPkg: upd72020x-fw

@@ -7,26 +7,26 @@ on:
 
 jobs:
   psautohint:
-    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.2
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.3
     with:
       repoUrl: https://aur.archlinux.org/psautohint.git
       repoPkg: psautohint
       art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
   python-ufonormalizer:
-    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.2
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.3
     with:
       repoUrl: https://aur.archlinux.org/python-ufonormalizer.git
       repoPkg: python-ufonormalizer
       art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
   afdko:
     needs: [psautohint, python-ufonormalizer]
-    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.2
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.3
     with:
       repoUrl: https://aur.archlinux.org/afdko.git
       repoPkg: afdko
       art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
   lib32-lzo:
-    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.2
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.3
     with:
       repoUrl: https://github.com/loathingKernel/PKGBUILDs.git
       repoPkg: aur/lib32-lzo
@@ -34,7 +34,7 @@ jobs:
       multilib: true
       art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
   mingw-w64-tools:
-    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.2
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.3
     with:
       repoUrl: https://aur.archlinux.org/mingw-w64-tools.git
       repoPkg: mingw-w64-tools
@@ -42,7 +42,7 @@ jobs:
       art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
   proton-experimental:
     needs: [lib32-lzo, mingw-w64-tools, afdko]
-    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.2
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.3
     with:
       repoUrl: https://aur.archlinux.org/proton-experimental.git
       repoPkg: proton-experimental
