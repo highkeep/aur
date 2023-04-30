@@ -11,5 +11,4 @@ jobs:
     with:
       repoUrl: https://aur.archlinux.org/mkinitcpio-firmware.git
       repoPkg: mkinitcpio-firmware
-      updateSrcInfo: true
       art: '[{"architecture":"generic", "repoTag":"generic_x86_64"}]'
