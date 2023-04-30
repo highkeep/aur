@@ -26,6 +26,10 @@
 [![gwe](https://img.shields.io/github/actions/workflow/status/highkeep/aur/gwe.yml?label=Build&style=flat-square)](https://github.com/highkeep/aur/actions/workflows/gwe.yml)
 [![gwe](https://img.shields.io/aur/last-modified/gwe?label=Source%20Last%20Modified&style=flat-square)![gwe](https://img.shields.io/aur/maintainer/gwe?style=flat-square&label=By&color=lightgrey)](https://aur.archlinux.org/packages/gwe)
 
+![mkinitcpio-firmware](https://img.shields.io/badge/-mkinitcpio--firmware-blue?style=flat-square)
+[![mkinitcpio-firmware](https://img.shields.io/github/actions/workflow/status/highkeep/aur/mkinitcpio-firmware.yml?label=Build&style=flat-square)](https://github.com/highkeep/aur/actions/workflows/mkinitcpio-firmware.yml)
+[![mkinitcpio-firmware](https://img.shields.io/aur/last-modified/mkinitcpio-firmware?label=Source%20Last%20Modified&style=flat-square)![mkinitcpio-firmware](https://img.shields.io/aur/maintainer/mkinitcpio-firmware?style=flat-square&label=By&color=lightgrey)](https://aur.archlinux.org/packages/mkinitcpio-firmware)
+
 ![ombi](https://img.shields.io/badge/-ombi-blue?style=flat-square)
 [![ombi](https://img.shields.io/github/actions/workflow/status/highkeep/aur/ombi.yml?label=Build&style=flat-square)](https://github.com/highkeep/aur/actions/workflows/ombi.yml)
 [![ombi](https://img.shields.io/aur/last-modified/ombi?label=Source%20Last%20Modified&style=flat-square)![ombi](https://img.shields.io/aur/maintainer/ombi?style=flat-square&label=By&color=lightgrey)](https://aur.archlinux.org/packages/ombi)
