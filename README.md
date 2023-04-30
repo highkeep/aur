@@ -19,7 +19,6 @@
 [![wine-ge-custom](https://github.com/highkeep/aur/actions/workflows/wine-ge-custom.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/wine-ge-custom.yml)
 [![zoom](https://github.com/highkeep/aur/actions/workflows/zoom.yml/badge.svg)](https://github.com/highkeep/aur/actions/workflows/zoom.yml)
 
-
 <br>
 
 ### <b>Package Repositories</b>
