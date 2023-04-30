@@ -1,0 +1,14 @@
+name: mkinitcpio-firmware
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 1,15 * *"
+
+jobs:
+  mkinitcpio-firmware:
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.4
+    with:
+      repoUrl: https://aur.archlinux.org/mkinitcpio-firmware.git
+      repoPkg: mkinitcpio-firmware
+      art: '[{"architecture":"generic", "repoTag":"generic_x86_64"}]'
