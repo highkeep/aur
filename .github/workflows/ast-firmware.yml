@@ -7,7 +7,7 @@ on:
 
 jobs:
   ast-firmware:
-    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.3
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.4
     with:
       repoUrl: https://aur.archlinux.org/ast-firmware.git
       repoPkg: ast-firmware
