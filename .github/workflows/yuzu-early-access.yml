@@ -13,7 +13,15 @@ jobs:
       repoPkg: cubeb
       nvidiaUtils: true
       art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
+  xbyak:
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.4
+    with:
+      repoUrl: https://aur.archlinux.org/xbyak.git
+      repoPkg: xbyak
+      nvidiaUtils: true
+      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
   dynarmic:
+    needs: [xbyak]
     uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.4
     with:
       repoUrl: https://aur.archlinux.org/dynarmic.git
