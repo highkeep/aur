@@ -42,8 +42,15 @@ jobs:
       repoPkg: cpp-httplib
       nvidiaUtils: true
       art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
+  cpp-jwt:
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.4
+    with:
+      repoUrl: https://aur.archlinux.org/cpp-jwt.git
+      repoPkg: cpp-jwt
+      nvidiaUtils: true
+      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
   yuzu-early-access:
-    needs: [cubeb, dynarmic, discord-rpc, cpp-httplib]
+    needs: [cubeb, dynarmic, discord-rpc, cpp-httplib, cpp-jwt]
     uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.4
     with:
       repoUrl: https://aur.archlinux.org/yuzu-early-access.git
