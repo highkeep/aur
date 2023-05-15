@@ -66,6 +66,10 @@
 [![wine-ge-custom](https://img.shields.io/github/actions/workflow/status/highkeep/aur/wine-ge-custom.yml?label=Build&style=flat-square)](https://github.com/highkeep/aur/actions/workflows/wine-ge-custom.yml)
 [![wine-ge-custom](https://img.shields.io/aur/last-modified/wine-ge-custom?label=Source%20Last%20Modified&style=flat-square)![wine-ge-custom](https://img.shields.io/aur/maintainer/wine-ge-custom?style=flat-square&label=By&color=lightgrey)](https://aur.archlinux.org/packages/wine-ge-custom)
 
+![yuzu-early-access](https://img.shields.io/badge/-yuzu-early-access-blue?style=flat-square)
+[![yuzu-early-access](https://img.shields.io/github/actions/workflow/status/highkeep/aur/yuzu-early-access.yml?label=Build&style=flat-square)](https://github.com/highkeep/aur/actions/workflows/yuzu-early-access.yml)
+[![yuzu-early-access](https://img.shields.io/aur/last-modified/yuzu-early-access?label=Source%20Last%20Modified&style=flat-square)![yuzu-early-access](https://img.shields.io/aur/maintainer/yuzu-early-access?style=flat-square&label=By&color=lightgrey)](https://aur.archlinux.org/packages/yuzu-early-access)
+
 ![zoom](https://img.shields.io/badge/-zoom-blue?style=flat-square)
 [![zoom](https://img.shields.io/github/actions/workflow/status/highkeep/aur/zoom.yml?label=Build&style=flat-square)](https://github.com/highkeep/aur/actions/workflows/zoom.yml)
 [![zoom](https://img.shields.io/aur/last-modified/zoom?label=Source%20Last%20Modified&style=flat-square)![zoom](https://img.shields.io/aur/maintainer/zoom?style=flat-square&label=By&color=lightgrey)](https://aur.archlinux.org/packages/zoom)
