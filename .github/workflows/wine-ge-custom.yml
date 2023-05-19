@@ -13,4 +13,4 @@ jobs:
       repoPkg: wine-ge-custom
       updatePkgbuild: true
       nvidiaUtils: true
-      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
+      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"znver2", "repoTag":"hk-znver2"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'

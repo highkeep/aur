@@ -12,14 +12,14 @@ jobs:
       repoUrl: https://aur.archlinux.org/cubeb.git
       repoPkg: cubeb
       multilib: true
-      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
+      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"znver2", "repoTag":"hk-znver2"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
   xbyak:
     uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.4
     with:
       repoUrl: https://aur.archlinux.org/xbyak.git
       repoPkg: xbyak
       multilib: true
-      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
+      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"znver2", "repoTag":"hk-znver2"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
   dynarmic:
     needs: [xbyak]
     uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.4
@@ -27,28 +27,28 @@ jobs:
       repoUrl: https://aur.archlinux.org/dynarmic.git
       repoPkg: dynarmic
       multilib: true
-      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
+      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"znver2", "repoTag":"hk-znver2"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
   discord-rpc:
     uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.4
     with:
       repoUrl: https://aur.archlinux.org/discord-rpc.git
       repoPkg: discord-rpc
       multilib: true
-      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
+      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"znver2", "repoTag":"hk-znver2"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
   cpp-httplib:
     uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.4
     with:
       repoUrl: https://aur.archlinux.org/cpp-httplib.git
       repoPkg: cpp-httplib
       multilib: true
-      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
+      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"znver2", "repoTag":"hk-znver2"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
   cpp-jwt:
     uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.4
     with:
       repoUrl: https://aur.archlinux.org/cpp-jwt.git
       repoPkg: cpp-jwt
       multilib: true
-      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
+      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"znver2", "repoTag":"hk-znver2"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
   yuzu-early-access:
     needs: [cubeb, dynarmic, discord-rpc, cpp-httplib, cpp-jwt]
     uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.4
@@ -56,4 +56,4 @@ jobs:
       repoUrl: https://aur.archlinux.org/yuzu-early-access.git
       repoPkg: yuzu-early-access
       nvidiaUtils: true
-      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
+      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"znver2", "repoTag":"hk-znver2"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
