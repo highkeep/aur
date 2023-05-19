@@ -1,0 +1,15 @@
+name: swaylock-effects-git
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 7,19 * * *"
+
+jobs:
+  swaylock-effects-git:
+    uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.3
+    with:
+      repoUrl: https://aur.archlinux.org/swaylock-effects-git.git
+      repoPkg: swaylock-effects-git
+      multilib: true
+      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'

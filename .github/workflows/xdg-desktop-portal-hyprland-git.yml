@@ -1,4 +1,4 @@
-name: waybar-hyprland
+name: xdg-desktop-portal-hyprland-git
 
 on:
   workflow_dispatch:
@@ -6,10 +6,10 @@ on:
     - cron: "0 7,19 * * *"
 
 jobs:
-  waybar-hyprland:
+  xdg-desktop-portal-hyprland-git:
     uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.3
     with:
-      repoUrl: https://aur.archlinux.org/waybar-hyprland.git
-      repoPkg: waybar-hyprland
-      multilib: true
+      repoUrl: https://aur.archlinux.org/xdg-desktop-portal-hyprland-git.git
+      repoPkg: xdg-desktop-portal-hyprland-git
+      nvidiaUtils: true
       art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'

@@ -1,4 +1,4 @@
-name: hyprland-nvidia
+name: grimblast-git
 
 on:
   workflow_dispatch:
@@ -6,10 +6,9 @@ on:
     - cron: "0 7,19 * * *"
 
 jobs:
-  hyprland-nvidia:
+  grimblast-git:
     uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.3
     with:
-      repoUrl: https://aur.archlinux.org/hyprland-nvidia.git
-      repoPkg: hyprland-nvidia
-      nvidiaUtils: true
+      repoUrl: https://aur.archlinux.org/grimblast-git.git
+      repoPkg: grimblast-git
       art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'

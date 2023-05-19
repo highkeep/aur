@@ -1,4 +1,4 @@
-name: wlogout
+name: hyprland-nvidia-git
 
 on:
   workflow_dispatch:
@@ -6,12 +6,10 @@ on:
     - cron: "0 7,19 * * *"
 
 jobs:
-  wlogout:
+  hyprland-nvidia-git:
     uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.3
     with:
-      repoUrl: https://aur.archlinux.org/wlogout.git
-      repoPkg: wlogout
-      updateSrcInfo: true
-      multilib: true
-      recvKeys: E25D679AF73C6D2F
+      repoUrl: https://aur.archlinux.org/hyprland-nvidia-git.git
+      repoPkg: hyprland-nvidia-git
+      nvidiaUtils: true
       art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
