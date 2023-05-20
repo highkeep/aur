@@ -12,4 +12,4 @@ jobs:
       repoUrl: https://aur.archlinux.org/chiaki-git.git
       repoPkg: chiaki
       nvidiaUtils: true
-      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
+      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"znver2", "repoTag":"hk-znver2"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'

@@ -3,7 +3,7 @@ name: gwe
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 */3 * *'
+    - cron: "0 0 */3 * *"
 
 jobs:
   python-py3nvml:
@@ -12,14 +12,14 @@ jobs:
       repoUrl: https://aur.archlinux.org/python-py3nvml.git
       repoPkg: python-py3nvml
       nvidiaUtils: true
-      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
+      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"znver2", "repoTag":"hk-znver2"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
   python-injector:
     uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.4
     with:
       repoUrl: https://aur.archlinux.org/python-injector.git
       repoPkg: python-injector
       nvidiaUtils: true
-      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
+      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"znver2", "repoTag":"hk-znver2"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
   gwe:
     needs: [python-py3nvml, python-injector]
     uses: highkeep/pkgbuild/.github/workflows/multiarch_builder.yml@v2.4
@@ -27,4 +27,4 @@ jobs:
       repoUrl: https://aur.archlinux.org/gwe.git
       repoPkg: gwe
       nvidiaUtils: true
-      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
+      art: '[{"architecture":"alderlake", "repoTag":"alderlake"},{"architecture":"znver2", "repoTag":"hk-znver2"},{"architecture":"generic", "repoTag":"generic_x86_64"}]'
