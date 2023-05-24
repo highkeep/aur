@@ -81,6 +81,7 @@
 
  - [Generic x86_64](https://github.com/highkeep/aur/releases/tag/generic_x86_64) <i>Contains all packages.</i>
  - [Alderlake](https://github.com/highkeep/aur/releases/tag/alderlake)
+ - [Ryzen 7 3700X, 4800H, 5700U](https://github.com/highkeep/aur/releases/tag/hk-znver2)
 
 
 <!-- ## Acknowledgements
